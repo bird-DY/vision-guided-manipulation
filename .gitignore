@@ -1,0 +1,35 @@
+# ROS 2 generated files
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+
+# Runtime data
+logs/
+outputs/
+*.log
+*.bag
+*.db3
+
+# Large models and datasets
+*.pt
+*.pth
+*.onnx
+*.engine
+data/raw/
+data/processed/
+
+# System files
+.DS_Store
+Thumbs.db
