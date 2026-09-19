@@ -1,0 +1,4 @@
+---
+bool ready
+string message
+zzx_interfaces/SubsystemStatus[] subsystems

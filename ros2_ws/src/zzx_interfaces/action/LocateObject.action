@@ -1,0 +1,18 @@
+int32 class_id
+string class_name
+float32 minimum_confidence
+string target_frame
+builtin_interfaces/Duration timeout
+---
+bool success
+int32 error_code
+string message
+zzx_interfaces/ObjectTarget target
+---
+uint8 STAGE_WAITING_FOR_FRAMES=1
+uint8 STAGE_DETECTING=2
+uint8 STAGE_ESTIMATING_POSE=3
+uint8 stage
+uint32 frames_processed
+uint32 candidates_detected
+float32 best_confidence

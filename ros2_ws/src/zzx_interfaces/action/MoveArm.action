@@ -1,0 +1,25 @@
+uint8 TARGET_JOINTS=1
+uint8 TARGET_POSE=2
+
+uint8 target_type
+sensor_msgs/JointState joint_target
+geometry_msgs/PoseStamped pose_target
+float64 velocity_scaling
+float64 acceleration_scaling
+bool plan_only
+builtin_interfaces/Duration timeout
+---
+bool success
+int32 error_code
+string message
+sensor_msgs/JointState final_joint_state
+geometry_msgs/PoseStamped final_pose
+---
+uint8 STAGE_VALIDATING=1
+uint8 STAGE_PLANNING=2
+uint8 STAGE_EXECUTING=3
+uint8 STAGE_SETTLING=4
+uint8 stage
+float32 progress
+string detail
+sensor_msgs/JointState current_joint_state

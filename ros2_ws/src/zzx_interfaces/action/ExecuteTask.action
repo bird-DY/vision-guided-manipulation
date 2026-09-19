@@ -1,0 +1,21 @@
+zzx_interfaces/TaskCommand command
+---
+bool success
+int32 error_code
+string message
+builtin_interfaces/Duration elapsed_time
+---
+uint8 STAGE_ACCEPTED=1
+uint8 STAGE_NAVIGATING=2
+uint8 STAGE_PERCEIVING=3
+uint8 STAGE_ALIGNING=4
+uint8 STAGE_PLANNING=5
+uint8 STAGE_MANIPULATING=6
+uint8 STAGE_VERIFYING=7
+uint8 STAGE_RECOVERING=8
+uint8 STAGE_COMPLETED=9
+uint8 stage
+float32 progress
+uint32 current_step
+uint32 total_steps
+string detail

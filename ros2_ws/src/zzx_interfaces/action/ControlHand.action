@@ -1,0 +1,24 @@
+uint8 UNIT_NORMALIZED=1
+uint8 UNIT_RADIANS=2
+
+uint8 position_unit
+string[] joint_names
+float64[] positions
+float64 speed_scaling
+float64 max_effort
+bool stop_on_contact
+builtin_interfaces/Duration timeout
+---
+bool success
+int32 error_code
+string message
+float64[] final_positions
+bool contact_detected
+---
+uint8 STAGE_VALIDATING=1
+uint8 STAGE_EXECUTING=2
+uint8 STAGE_HOLDING=3
+uint8 stage
+float32 progress
+float64[] current_positions
+bool contact_detected

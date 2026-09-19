@@ -1,0 +1,24 @@
+zzx_interfaces/ObjectTarget target
+float32 desired_distance_m
+float32 lateral_tolerance_m
+float32 longitudinal_tolerance_m
+float32 max_linear_speed_mps
+float32 max_angular_speed_rps
+builtin_interfaces/Duration timeout
+---
+bool success
+int32 error_code
+string message
+float32 final_lateral_error_m
+float32 final_longitudinal_error_m
+---
+uint8 STAGE_SEARCHING=1
+uint8 STAGE_ROTATING=2
+uint8 STAGE_TRANSLATING=3
+uint8 STAGE_SETTLING=4
+uint8 stage
+float32 progress
+float32 lateral_error_m
+float32 longitudinal_error_m
+geometry_msgs/Twist command
+string detail

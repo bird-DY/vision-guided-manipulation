@@ -1,0 +1,6 @@
+string subsystem
+string mode
+---
+bool success
+int32 error_code
+string message
