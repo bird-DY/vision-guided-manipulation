@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+"""Command-line wrapper for robot profile validation."""
+
+from pathlib import Path
+import sys
+
+
+REPOSITORY = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPOSITORY))
+
+from zzx_tools.profile import main  # noqa: E402
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

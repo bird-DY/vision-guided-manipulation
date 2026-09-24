@@ -1,0 +1,14 @@
+tool_id: competition_omnihand_o10
+model: omnihand_o10
+joint_names:
+  - thumb_roll
+  - thumb_abad
+  - thumb_mcp
+  - index_abad
+  - index_pip
+  - middle_pip
+  - ring_abad
+  - ring_pip
+  - pinky_abad
+  - pinky_pip
+tcp_frame: left_tool0

@@ -1,0 +1,81 @@
+schema_version: 1
+profile_id: competition_left_7dof_o10
+display_name: Competition left arm with OmniHand O10 and Gemini335
+deployment: hardware
+
+base:
+  type: fixed
+  command_interface: none
+
+arm:
+  model: competition_left_arm_unknown_vendor
+  side: left
+  dof: 7
+  joint_names:
+    - left_shoulder_pitch_joint
+    - left_shoulder_roll_joint
+    - left_shoulder_yaw_joint
+    - left_elbow_roll_joint
+    - left_elbow_yaw_joint
+    - left_wrist_pitch_joint
+    - left_wrist_yaw_joint
+  home_positions_rad: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  backend:
+    type: http
+    endpoint: http://192.168.0.22:8087
+    capabilities:
+      joint_target: true
+      pose_target: false
+      trajectory: false
+      cancel: true
+      force_control: false
+      plan_only: true
+      teach_mode: true
+
+hand:
+  model: omnihand_o10
+  dof: 10
+  joint_names:
+    - thumb_roll
+    - thumb_abad
+    - thumb_mcp
+    - index_abad
+    - index_pip
+    - middle_pip
+    - ring_abad
+    - ring_pip
+    - pinky_abad
+    - pinky_pip
+  backend:
+    type: http
+    endpoint: http://192.168.0.22:8088
+    capabilities:
+      joint_target: false
+      pose_target: false
+      trajectory: false
+      cancel: false
+      force_control: false
+      position_command: true
+
+camera:
+  model: orbbec_gemini335
+  transport: usb
+  frame_id: camera_color_optical_frame
+  color_resolution: [1280, 720]
+  depth_resolution: [1280, 720]
+  fps: 30
+  registered_depth_required: true
+
+tool:
+  tool_id: competition_omnihand_o10
+  tcp_frame: left_tool0
+
+calibration:
+  calibration_id: unvalidated_eye_in_hand
+  status: placeholder
+  transform_available: false
+  manifest: null
+
+safety:
+  automatic_motion_allowed: false
+  requires_operator_presence: true

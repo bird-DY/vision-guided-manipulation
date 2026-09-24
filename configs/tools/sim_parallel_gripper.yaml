@@ -1,0 +1,4 @@
+tool_id: sim_parallel_gripper
+model: parallel_gripper
+joint_names: [joint7, joint8]
+tcp_frame: link6

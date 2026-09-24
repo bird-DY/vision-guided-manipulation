@@ -14,6 +14,7 @@
 - 冻结 Humble 环境、Python 视觉依赖和上游压缩包来源，提供一键安装与环境自检脚本。
 - 分离纯模型、Gazebo 控制和 MoveIt mock 控制，统一机械臂及夹爪控制器关节所有权。
 - 修复上游 Python 空字节测试、Cartographer 启动格式和原型节点静态检查问题。
+- 建立严格 robot profile、工具注册表和自动运行标定门禁，隔离仿真六轴与比赛七轴/O10 配置。
 
 正在规划和实施：C++ 执行监控、可靠 RGB-D 定位、手眼/TCP 标定、MoveIt Task Constructor 抓放、行为树、比赛 HTTP 适配、故障注入和自动评测。路线图中的指标均为待实验的验收目标，不是现有成绩。
 
@@ -23,6 +24,7 @@
 - [实施任务与验收清单](docs/implementation_backlog.md)
 - [开发环境基线](docs/environment.md)
 - [上游来源清单](docs/source_manifest.md)
+- [Robot profile 使用说明](docs/robot_profiles.md)
 - [统一 ROS 2 接口说明](ros2_ws/src/zzx_interfaces/README.md)
 
 ## 目录
@@ -30,7 +32,7 @@
 ```text
 ros2_ws/src/Zzxrobot/       LeoRobot 上游代码与可复现基线
 ros2_ws/src/zzx_interfaces  项目统一消息、服务和动作接口
-configs/                    后续 robot/site profile
+configs/                    Robot、工具及后续 site profile
 docs/                       架构、调研、实施和实验文档
 scripts/                    后续环境、自检、记录与发布工具
 tests/                      后续跨包契约和端到端测试
@@ -56,6 +58,16 @@ python3 scripts/validate_controller_mapping.py
 ```
 
 当前 Humble 基线完成 5 个包构建，测试汇总为 16 项、0 错误、0 失败、1 项版权检查跳过。该结果只证明构建和静态测试通过，不代表 Gazebo 动态控制、真机执行或视觉精度已经验收。
+
+Robot profile 修改后必须运行：
+
+```bash
+scripts/zzx_profile validate
+scripts/zzx_profile validate zzx_sim_mobile_6dof --automatic
+python3 -m unittest discover -s tests -p 'test_robot_profiles.py' -v
+```
+
+比赛 profile 在手眼/TCP 标定完成前会主动拒绝 `--automatic`，避免占位外参进入自动控制。
 
 ## 开发约定
 

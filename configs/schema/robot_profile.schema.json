@@ -1,0 +1,167 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://bird-dy.github.io/vision-guided-manipulation/robot_profile.schema.json",
+  "title": "Zzxrobot robot profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "profile_id",
+    "display_name",
+    "deployment",
+    "base",
+    "arm",
+    "hand",
+    "camera",
+    "tool",
+    "calibration",
+    "safety"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "profile_id": {"type": "string", "pattern": "^[a-z][a-z0-9_]+$"},
+    "display_name": {"type": "string", "minLength": 1},
+    "deployment": {"enum": ["simulation", "hardware"]},
+    "base": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "command_interface"],
+      "properties": {
+        "type": {"enum": ["differential", "fixed"]},
+        "command_interface": {"enum": ["cmd_vel", "none"]}
+      }
+    },
+    "arm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "model",
+        "side",
+        "dof",
+        "joint_names",
+        "home_positions_rad",
+        "backend"
+      ],
+      "properties": {
+        "model": {"type": "string", "minLength": 1},
+        "side": {"enum": ["left", "right", "center"]},
+        "dof": {"type": "integer", "minimum": 1, "maximum": 20},
+        "joint_names": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "home_positions_rad": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "number"}
+        },
+        "backend": {"$ref": "#/definitions/backend"}
+      }
+    },
+    "hand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["model", "dof", "joint_names", "backend"],
+      "properties": {
+        "model": {"type": "string", "minLength": 1},
+        "dof": {"type": "integer", "minimum": 1, "maximum": 30},
+        "joint_names": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "backend": {"$ref": "#/definitions/backend"}
+      }
+    },
+    "camera": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "model",
+        "transport",
+        "frame_id",
+        "color_resolution",
+        "depth_resolution",
+        "fps",
+        "registered_depth_required"
+      ],
+      "properties": {
+        "model": {"type": "string", "minLength": 1},
+        "transport": {"enum": ["gazebo", "usb", "network"]},
+        "frame_id": {"type": "string", "minLength": 1},
+        "color_resolution": {"$ref": "#/definitions/resolution"},
+        "depth_resolution": {"$ref": "#/definitions/resolution"},
+        "fps": {"type": "integer", "minimum": 1, "maximum": 240},
+        "registered_depth_required": {"type": "boolean"}
+      }
+    },
+    "tool": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tool_id", "tcp_frame"],
+      "properties": {
+        "tool_id": {"type": "string", "pattern": "^[a-z][a-z0-9_]+$"},
+        "tcp_frame": {"type": "string", "minLength": 1}
+      }
+    },
+    "calibration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["calibration_id", "status", "transform_available"],
+      "properties": {
+        "calibration_id": {"type": "string", "minLength": 1},
+        "status": {"enum": ["not_required", "placeholder", "validated", "expired"]},
+        "transform_available": {"type": "boolean"},
+        "manifest": {"type": ["string", "null"]}
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["automatic_motion_allowed", "requires_operator_presence"],
+      "properties": {
+        "automatic_motion_allowed": {"type": "boolean"},
+        "requires_operator_presence": {"type": "boolean"}
+      }
+    }
+  },
+  "definitions": {
+    "resolution": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {"type": "integer", "minimum": 1}
+    },
+    "backend": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "capabilities"],
+      "properties": {
+        "type": {"enum": ["fake", "ros2_control", "http"]},
+        "endpoint": {"type": ["string", "null"]},
+        "capabilities": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "joint_target",
+            "pose_target",
+            "trajectory",
+            "cancel",
+            "force_control"
+          ],
+          "properties": {
+            "joint_target": {"type": "boolean"},
+            "pose_target": {"type": "boolean"},
+            "trajectory": {"type": "boolean"},
+            "cancel": {"type": "boolean"},
+            "force_control": {"type": "boolean"},
+            "plan_only": {"type": "boolean"},
+            "teach_mode": {"type": "boolean"},
+            "position_command": {"type": "boolean"}
+          }
+        }
+      }
+    }
+  }
+}

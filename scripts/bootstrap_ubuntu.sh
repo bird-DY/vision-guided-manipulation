@@ -21,11 +21,13 @@ sudo apt-get install -y \
   curl \
   git \
   python3-colcon-common-extensions \
+  python3-jsonschema \
   python3-opencv \
   python3-pip \
   python3-pyaudio \
   python3-rosdep \
   python3-scipy \
+  python3-yaml \
   python3-venv \
   python3-vcstool \
   "ros-${ROS_DISTRO}-cartographer-ros" \

@@ -1,0 +1,64 @@
+schema_version: 1
+profile_id: zzx_sim_mobile_6dof
+display_name: Zzxrobot Gazebo mobile manipulator
+deployment: simulation
+
+base:
+  type: differential
+  command_interface: cmd_vel
+
+arm:
+  model: six_arm
+  side: center
+  dof: 6
+  joint_names: [joint1, joint2, joint3, joint4, joint5, joint6]
+  home_positions_rad: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  backend:
+    type: ros2_control
+    endpoint: null
+    capabilities:
+      joint_target: true
+      pose_target: true
+      trajectory: true
+      cancel: true
+      force_control: false
+      plan_only: true
+      teach_mode: false
+
+hand:
+  model: parallel_gripper
+  dof: 2
+  joint_names: [joint7, joint8]
+  backend:
+    type: ros2_control
+    endpoint: null
+    capabilities:
+      joint_target: true
+      pose_target: false
+      trajectory: true
+      cancel: true
+      force_control: false
+      position_command: true
+
+camera:
+  model: gazebo_rgbd
+  transport: gazebo
+  frame_id: camera_link
+  color_resolution: [640, 480]
+  depth_resolution: [640, 480]
+  fps: 30
+  registered_depth_required: true
+
+tool:
+  tool_id: sim_parallel_gripper
+  tcp_frame: link6
+
+calibration:
+  calibration_id: simulation_ground_truth
+  status: not_required
+  transform_available: true
+  manifest: null
+
+safety:
+  automatic_motion_allowed: true
+  requires_operator_presence: false
