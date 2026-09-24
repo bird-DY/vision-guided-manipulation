@@ -3,6 +3,7 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from std_msgs.msg import String
 
+
 class VelocityController(Node):
     def __init__(self):
         super().__init__('velocity_controller')
@@ -22,22 +23,23 @@ class VelocityController(Node):
     def command_callback(self, msg):
         if msg.data == '0':         # 停止
             self.set_velocity(0.0, 0.0)
-            self.get_logger().info(f"停止运动")
+            self.get_logger().info("停止运动")
         elif msg.data == '1':       # 转动
             self.set_velocity(0.0, 0.2)
-            self.get_logger().info(f"开始校准角度")
+            self.get_logger().info("开始校准角度")
         elif msg.data == '2':       # 移动
             self.set_velocity(0.02, 0.0)
-            self.get_logger().info(f"开始校准距离")
+            self.get_logger().info("开始校准距离")
 
     def set_velocity(self, linear, angular):
-        """设置线速度和角速度"""
+        """设置线速度和角速度."""
         self.vel_msg.linear.x = linear
         self.vel_msg.angular.z = angular
 
     def timer_callback(self):
-        """发布速度消息"""
+        """发布速度消息."""
         self.publisher_.publish(self.vel_msg)
+
 
 def main(args=None):
     rclpy.init(args=args)
@@ -49,6 +51,7 @@ def main(args=None):
     finally:
         controller.destroy_node()
         rclpy.shutdown()
+
 
 if __name__ == '__main__':
     main()

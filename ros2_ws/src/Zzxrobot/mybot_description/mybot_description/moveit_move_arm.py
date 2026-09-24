@@ -11,12 +11,16 @@ from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 from control_msgs.action import FollowJointTrajectory
 from scipy.spatial.transform import Rotation as R
 
+
 class MoveitClient(Node):
 
     def __init__(self):
         super().__init__('moveit_move_arm_client')
         self.plan_client = self.create_client(GetMotionPlan, 'plan_kinematic_path')
-        self.action_client = ActionClient(self, FollowJointTrajectory, '/my_group_controller/follow_joint_trajectory')
+        self.action_client = ActionClient(
+            self,
+            FollowJointTrajectory,
+            '/my_group_controller/follow_joint_trajectory')
         while not self.plan_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('Service not available, waiting again...')
         self.future = None
@@ -58,11 +62,12 @@ class MoveitClient(Node):
         position_constraint = PositionConstraint()
         position_constraint.header = Header(frame_id='base_link')
         position_constraint.link_name = 'link6'
-        
+
         # 定义约束区域
         position_constraint.constraint_region.primitives.append(SolidPrimitive())
         position_constraint.constraint_region.primitives[0].type = SolidPrimitive.BOX
-        position_constraint.constraint_region.primitives[0].dimensions = [0.01, 0.01, 0.01]  # 假设这是一个0.1m的盒子区域
+        position_constraint.constraint_region.primitives[0].dimensions = [
+            0.01, 0.01, 0.01]  # 假设这是一个0.1m的盒子区域
         position_constraint.constraint_region.primitive_poses.append(target_pose.pose)  # 添加位置约束的姿态
         position_constraint.weight = 1.0
 
@@ -75,12 +80,12 @@ class MoveitClient(Node):
         self.future = self.plan_client.call_async(request)
 
     def joint_state_callback(self, msg):
-        """接收关节状态的回调函数"""
+        """接收关节状态的回调函数."""
         self.joint_state = msg
         self.joint_state_received = True  # 收到关节状态后更新标记
 
     def get_current_robot_state(self):
-        """获取当前机器人的状态"""
+        """获取当前机器人的状态."""
         current_state = RobotState()
         # 等待关节状态接收
         while not self.joint_state_received:
@@ -102,7 +107,7 @@ class MoveitClient(Node):
             self.get_logger().error('运动规划失败')
 
     def execute_trajectory(self, trajectory):
-        """执行规划的轨迹"""
+        """执行规划的轨迹."""
         if not self.action_client.wait_for_server(timeout_sec=5.0):
             self.get_logger().error('Action server not available!')
             return
@@ -117,7 +122,7 @@ class MoveitClient(Node):
             trajectory_point.accelerations = point.accelerations
             trajectory_point.time_from_start = point.time_from_start
             joint_trajectory.points.append(trajectory_point)
-        
+
         # 设置目标
         goal_msg.trajectory = joint_trajectory
 

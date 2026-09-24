@@ -11,6 +11,9 @@
 - 建立 `zzx_interfaces`，包含目标、状态、任务消息以及视觉、底盘、机械臂、灵巧手和任务 Action。
 - 在 WSL Ubuntu 22.04 / ROS 2 Humble 中完成接口包构建、自省和测试。
 - 安装并核验 MoveIt 2、Nav2、ros2_control、Cartographer 与 Gazebo Classic 基线环境。
+- 冻结 Humble 环境、Python 视觉依赖和上游压缩包来源，提供一键安装与环境自检脚本。
+- 分离纯模型、Gazebo 控制和 MoveIt mock 控制，统一机械臂及夹爪控制器关节所有权。
+- 修复上游 Python 空字节测试、Cartographer 启动格式和原型节点静态检查问题。
 
 正在规划和实施：C++ 执行监控、可靠 RGB-D 定位、手眼/TCP 标定、MoveIt Task Constructor 抓放、行为树、比赛 HTTP 适配、故障注入和自动评测。路线图中的指标均为待实验的验收目标，不是现有成绩。
 
@@ -18,6 +21,8 @@
 
 - [企业级改进总体方案](docs/industrial_upgrade_plan.md)
 - [实施任务与验收清单](docs/implementation_backlog.md)
+- [开发环境基线](docs/environment.md)
+- [上游来源清单](docs/source_manifest.md)
 - [统一 ROS 2 接口说明](ros2_ws/src/zzx_interfaces/README.md)
 
 ## 目录
@@ -29,6 +34,7 @@ configs/                    后续 robot/site profile
 docs/                       架构、调研、实施和实验文档
 scripts/                    后续环境、自检、记录与发布工具
 tests/                      后续跨包契约和端到端测试
+requirements/               按硬件平台区分的 Python 版本锁
 ```
 
 ## 当前构建
@@ -37,13 +43,19 @@ tests/                      后续跨包契约和端到端测试
 cd ~/vision_guided_manipulation/ros2_ws
 source /opt/ros/humble/setup.bash
 rosdep install --from-paths src --ignore-src -r -y
-colcon build --symlink-install --packages-select zzx_interfaces
+colcon build --symlink-install
 source install/setup.bash
-colcon test --packages-select zzx_interfaces
-colcon test-result --test-result-base build/zzx_interfaces/test_results --verbose
+colcon test
+colcon test-result --verbose
 ```
 
-`zzx_interfaces` 已通过包级测试。上游 `mybot_description` 的空字节测试文件及 `mybot_cartographer` 的历史格式问题仍属于实施清单 B02，不能据此宣称全工作空间测试已经通过。
+完整环境安装、自检和全工作空间测试见 `docs/environment.md`。控制器配置修改后必须运行：
+
+```bash
+python3 scripts/validate_controller_mapping.py
+```
+
+当前 Humble 基线完成 5 个包构建，测试汇总为 16 项、0 错误、0 失败、1 项版权检查跳过。该结果只证明构建和静态测试通过，不代表 Gazebo 动态控制、真机执行或视觉精度已经验收。
 
 ## 开发约定
 

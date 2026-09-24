@@ -6,7 +6,8 @@ from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 class ClawController(Node):
     def __init__(self):
         super().__init__('claw_controller')
-        self.publisher = self.create_publisher(JointTrajectory, '/gripper_controller/joint_trajectory', 10)
+        self.publisher = self.create_publisher(
+            JointTrajectory, '/gripper_controller/joint_trajectory', 10)
         self.timer = self.create_timer(1, self.send_joint_trajectory)           # 反复调用函数
 
     def send_joint_trajectory(self):
@@ -25,11 +26,13 @@ class ClawController(Node):
         self.publisher.publish(traj_msg)
         self.get_logger().info('Publishing trajectory point')
 
+
 def main(args=None):
     rclpy.init(args=args)
     node = ClawController()
     rclpy.spin(node)
     rclpy.shutdown()
+
 
 if __name__ == '__main__':
     main()

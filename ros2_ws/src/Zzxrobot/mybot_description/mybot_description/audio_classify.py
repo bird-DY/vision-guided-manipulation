@@ -1,7 +1,6 @@
 import pyaudio
 import wave
 import websocket
-import datetime
 import hashlib
 import base64
 import hmac
@@ -13,19 +12,18 @@ from wsgiref.handlers import format_date_time
 from datetime import datetime
 from time import mktime
 import _thread as thread
-import os
 import requests
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 import threading
-import time
 
 STATUS_FIRST_FRAME = 0  # 第一帧的标识
 STATUS_CONTINUE_FRAME = 1  # 中间帧标识
 STATUS_LAST_FRAME = 2  # 最后一帧的标识
 target = -1
 stop_recording = False
+
 
 def input_listener():
     global stop_recording
@@ -37,16 +35,24 @@ def input_listener():
             print("录音结束")
             break
 
+
 def classify(words):            # 文本输入大模型的API输出分类
     # 替换为你的实际访问令牌
     access_token = ""
-    url = f"https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/completions?access_token={access_token}"
+    url = (
+        'https://aip.baidubce.com/rpc/2.0/ai_custom/v1/'
+        f'wenxinworkshop/chat/completions?access_token={access_token}'
+    )
     # 定义要发送的消息
     payload = json.dumps({
         "messages": [
             {
                 "role": "user",
-                "content": f'这是字典[41:杯子,39:瓶子,73书本],模仿这个例子：请到B区拿个瓶子，再到A区拿一个杯子->B39A41。也就是你只要按出现顺序回答连续的‘区域字母-类别数字对’，接下来请听话：{words}'
+                "content": (
+                    '这是字典[41:杯子,39:瓶子,73书本]。例如：请到B区拿个瓶子，'
+                    '再到A区拿一个杯子，回答B39A41。只按出现顺序回答连续的'
+                    f'区域字母和类别数字对。接下来请听话：{words}'
+                ),
             }
         ],
         "temperature": 0.95,
@@ -88,7 +94,12 @@ class Ws_Param(object):
         # 公共参数(common)
         self.CommonArgs = {"app_id": self.APPID}
         # 业务参数(business)，更多个性化参数可在官网查看
-        self.BusinessArgs = {"domain": "iat", "language": "zh_cn", "accent": "mandarin", "vinfo":1,"vad_eos":10000}
+        self.BusinessArgs = {
+            "domain": "iat",
+            "language": "zh_cn",
+            "accent": "mandarin",
+            "vinfo": 1,
+            "vad_eos": 10000}
 
     # 生成url
     def create_url(self):
@@ -106,9 +117,17 @@ class Ws_Param(object):
                                  digestmod=hashlib.sha256).digest()
         signature_sha = base64.b64encode(signature_sha).decode(encoding='utf-8')
 
-        authorization_origin = "api_key=\"%s\", algorithm=\"%s\", headers=\"%s\", signature=\"%s\"" % (
-            self.APIKey, "hmac-sha256", "host date request-line", signature_sha)
-        authorization = base64.b64encode(authorization_origin.encode('utf-8')).decode(encoding='utf-8')
+        authorization_origin = (
+            'api_key="%s", algorithm="%s", headers="%s", signature="%s"'
+            % (
+                self.APIKey,
+                "hmac-sha256",
+                "host date request-line",
+                signature_sha,
+            )
+        )
+        authorization = base64.b64encode(
+            authorization_origin.encode('utf-8')).decode(encoding='utf-8')
         # 将请求的鉴权参数组合为字典
         v = {
             "authorization": authorization,
@@ -120,6 +139,8 @@ class Ws_Param(object):
         return url
 
 # 收到websocket消息的处理
+
+
 def on_message(ws, message):
     global target
     try:
@@ -134,7 +155,7 @@ def on_message(ws, message):
             for i in data:
                 for w in i["cw"]:
                     result += w["w"]
-            # print("sid:%s call success!,data is:%s" % (sid, json.dumps(data, ensure_ascii=False)))
+            # Successful recognition data is intentionally not logged here.
         if len(result) > 2:
             print(result)
             target = classify(result)
@@ -142,14 +163,20 @@ def on_message(ws, message):
         print("receive msg,but parse exception:", e)
 
 # 收到websocket错误的处理
+
+
 def on_error(ws, error):
     print("### error:", error)
 
 # 收到websocket关闭的处理
+
+
 def on_close(ws, a, b):
     print("### closed ###")
 
 # 收到websocket连接建立的处理
+
+
 def on_open(ws):
     def run(*args):
         frameSize = 8000  # 每一帧的音频大小
@@ -187,6 +214,7 @@ def on_open(ws):
 
     thread.start_new_thread(run, ())
 
+
 def record_audio(file_name):            # 录音生成文件
     FORMAT = pyaudio.paInt16  # 16-bit 深度
     CHANNELS = 1  # 单声道
@@ -196,7 +224,12 @@ def record_audio(file_name):            # 录音生成文件
 
     # 初始化pyaudio
     p = pyaudio.PyAudio()
-    stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
+    stream = p.open(
+        format=FORMAT,
+        channels=CHANNELS,
+        rate=RATE,
+        input=True,
+        frames_per_buffer=CHUNK)
     threading.Thread(target=input_listener, daemon=True).start()
 
     while not stop_recording:
@@ -215,20 +248,23 @@ def record_audio(file_name):            # 录音生成文件
         wf.setframerate(RATE)
         wf.writeframes(b''.join(frames))
 
+
 class AudioClassifyNode(Node):
     def __init__(self):
         super().__init__('audio_classify_node')
         self.timer = self.create_timer(1, self.publish_msg)
-        self.publisher = self.create_publisher(String, 'voice_commands', 10)        # 创建话题，发布识别的目标的类
-        
+        self.publisher = self.create_publisher(
+            String, 'voice_commands', 10)        # 创建话题，发布识别的目标的类
+
     def publish_msg(self):
         self.publisher.publish(String(data=str(target)))
 
 
 audio_file = "output.wav"  # 输出音频文件名
 wsParam = Ws_Param(APPID='your appid', APISecret='your apisecret',
-                APIKey='your apikey',
-                AudioFile=audio_file)
+                   APIKey='your apikey',
+                   AudioFile=audio_file)
+
 
 def main():
     # 先录音
@@ -236,7 +272,12 @@ def main():
     # 创建WebSocket连接并发送音频
     websocket.enableTrace(False)
     wsUrl = wsParam.create_url()
-    ws = websocket.WebSocketApp(wsUrl, on_message=on_message, on_error=on_error, on_close=on_close)
+    ws = websocket.WebSocketApp(
+        wsUrl,
+        on_message=on_message,
+        on_error=on_error,
+        on_close=on_close,
+    )
     ws.on_open = on_open
     ws.run_forever(sslopt={"cert_reqs": ssl.CERT_NONE})
     rclpy.init()
@@ -244,6 +285,7 @@ def main():
     rclpy.spin(my_node)
     my_node.destroy_node()  # cleans up pub-subs, etc
     rclpy.shutdown()
+
 
 if __name__ == "__main__":
     main()

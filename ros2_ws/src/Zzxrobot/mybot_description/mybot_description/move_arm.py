@@ -4,6 +4,7 @@ from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 import time
 from std_msgs.msg import String
 
+
 class ArmController(Node):
     def __init__(self):
         super().__init__('arm_controller')
@@ -13,9 +14,16 @@ class ArmController(Node):
             self.play,
             30
         )
-        self.publisher_nav = self.create_publisher(String, 'action_over', 10)        # 告知导航节点动作完成的话题
-        self.publisher = self.create_publisher(JointTrajectory, '/my_group_controller/joint_trajectory', 10)        # 机械臂动作组
-        self.publisher2 = self.create_publisher(JointTrajectory, '/gripper_controller/joint_trajectory', 10)        # 机械爪动作组
+        self.publisher_nav = self.create_publisher(
+            String, 'action_over', 10)        # 告知导航节点动作完成的话题
+        self.publisher = self.create_publisher(
+            JointTrajectory,
+            '/my_group_controller/joint_trajectory',
+            10)        # 机械臂动作组
+        self.publisher2 = self.create_publisher(
+            JointTrajectory,
+            '/gripper_controller/joint_trajectory',
+            10)        # 机械爪动作组
         self.send_claw_trajectory([0.6, -0.6])
         time.sleep(1)
         self.send_arm_trajectory([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
@@ -53,7 +61,7 @@ class ArmController(Node):
 
         self.publisher.publish(traj_msg)
         # self.get_logger().info('Publishing trajectory point')
-    
+
     def send_claw_trajectory(self, target_point):        # 发布消息控制机械爪
         # 创建JointTrajectory消息
         traj_msg = JointTrajectory()
@@ -68,11 +76,13 @@ class ArmController(Node):
 
         self.publisher2.publish(traj_msg)
 
+
 def main(args=None):
     rclpy.init(args=args)
     node = ArmController()
     rclpy.spin(node)
     rclpy.shutdown()
+
 
 if __name__ == '__main__':
     main()
