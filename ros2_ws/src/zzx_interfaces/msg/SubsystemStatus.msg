@@ -12,6 +12,8 @@ bool connected
 bool enabled
 string active_operation
 string message
+zzx_interfaces/BackendCapabilities capabilities
+zzx_interfaces/ExecutionStatus execution
 
 # diagnostic_keys and diagnostic_values must have the same length.
 string[] diagnostic_keys

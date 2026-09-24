@@ -10,15 +10,11 @@ bool stop_on_contact
 builtin_interfaces/Duration timeout
 ---
 bool success
-int32 error_code
-string message
+zzx_interfaces/ErrorStatus error
+zzx_interfaces/ExecutionStatus execution
 float64[] final_positions
 bool contact_detected
 ---
-uint8 STAGE_VALIDATING=1
-uint8 STAGE_EXECUTING=2
-uint8 STAGE_HOLDING=3
-uint8 stage
-float32 progress
+zzx_interfaces/ExecutionStatus execution
 float64[] current_positions
 bool contact_detected

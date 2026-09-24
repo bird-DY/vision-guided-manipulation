@@ -1,4 +1,4 @@
 ---
 bool ready
-string message
+zzx_interfaces/ErrorStatus error
 zzx_interfaces/SubsystemStatus[] subsystems

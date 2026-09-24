@@ -9,8 +9,12 @@ find_package(geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 
 set(msg_files
+  "msg/BackendCapabilities.msg"
+  "msg/ErrorStatus.msg"
+  "msg/ExecutionStatus.msg"
   "msg/ObjectTarget.msg"
   "msg/SubsystemStatus.msg"
+  "msg/TargetQuality.msg"
   "msg/TaskCommand.msg"
 )
 
@@ -43,6 +47,12 @@ ament_export_dependencies(rosidl_default_runtime)
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   ament_lint_auto_find_test_dependencies()
+
+  find_package(ament_cmake_gtest REQUIRED)
+  ament_add_gtest(test_interface_types test/test_interface_types.cpp)
+  rosidl_get_typesupport_target(cpp_typesupport_target
+    ${PROJECT_NAME} "rosidl_typesupport_cpp")
+  target_link_libraries(test_interface_types "${cpp_typesupport_target}")
 endif()
 
 ament_package()

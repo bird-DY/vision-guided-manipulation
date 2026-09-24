@@ -10,16 +10,10 @@ bool plan_only
 builtin_interfaces/Duration timeout
 ---
 bool success
-int32 error_code
-string message
+zzx_interfaces/ErrorStatus error
+zzx_interfaces/ExecutionStatus execution
 sensor_msgs/JointState final_joint_state
 geometry_msgs/PoseStamped final_pose
 ---
-uint8 STAGE_VALIDATING=1
-uint8 STAGE_PLANNING=2
-uint8 STAGE_EXECUTING=3
-uint8 STAGE_SETTLING=4
-uint8 stage
-float32 progress
-string detail
+zzx_interfaces/ExecutionStatus execution
 sensor_msgs/JointState current_joint_state

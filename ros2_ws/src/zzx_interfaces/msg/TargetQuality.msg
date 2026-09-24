@@ -1,0 +1,6 @@
+float32 score
+float32 position_std_m
+float32 orientation_std_rad
+float32 valid_depth_ratio
+uint32 sample_count
+string method_id

@@ -1,0 +1,9 @@
+string backend_id
+bool joint_target
+bool pose_target
+bool trajectory
+bool cancel
+bool force_control
+bool plan_only
+bool teach_mode
+bool position_command

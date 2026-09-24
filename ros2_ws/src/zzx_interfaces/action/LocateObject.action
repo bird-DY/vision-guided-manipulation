@@ -5,14 +5,11 @@ string target_frame
 builtin_interfaces/Duration timeout
 ---
 bool success
-int32 error_code
-string message
+zzx_interfaces/ErrorStatus error
+zzx_interfaces/ExecutionStatus execution
 zzx_interfaces/ObjectTarget target
 ---
-uint8 STAGE_WAITING_FOR_FRAMES=1
-uint8 STAGE_DETECTING=2
-uint8 STAGE_ESTIMATING_POSE=3
-uint8 stage
+zzx_interfaces/ExecutionStatus execution
 uint32 frames_processed
 uint32 candidates_detected
 float32 best_confidence

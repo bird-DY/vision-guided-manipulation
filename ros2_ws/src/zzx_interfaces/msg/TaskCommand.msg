@@ -7,8 +7,10 @@ uint8 TASK_TOGGLE_SWITCH=5
 uint8 TASK_SORT_OBJECT=6
 
 std_msgs/Header header
+uint16 schema_version
 string task_id
 uint8 task_type
+string robot_profile_id
 
 string target_id
 int32 target_class_id
