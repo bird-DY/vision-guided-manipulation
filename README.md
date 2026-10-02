@@ -28,6 +28,7 @@
 - [上游来源清单](docs/source_manifest.md)
 - [Robot profile 使用说明](docs/robot_profiles.md)
 - [B05 代码导读与 VS Code 操作](docs/code_walkthrough.md)
+- [B06 MoveArm Action 实现与运行](docs/move_arm_action.md)
 - [统一 ROS 2 接口说明](ros2_ws/src/zzx_interfaces/README.md)
 
 ## 目录
@@ -36,7 +37,7 @@
 ros2_ws/src/Zzxrobot/       LeoRobot 上游代码与可复现基线
 ros2_ws/src/zzx_interfaces  项目统一消息、服务和动作接口
 ros2_ws/src/zzx_contracts   Python 语义校验与只读契约监视节点
-ros2_ws/src/zzx_execution   C++ 假机械臂后端及故障回归测试
+ros2_ws/src/zzx_execution   C++ 假机械臂、MoveArm Action 与故障回归测试
 configs/                    Robot、工具及后续 site profile
 docs/                       架构、调研、实施和实验文档
 scripts/                    后续环境、自检、记录与发布工具
