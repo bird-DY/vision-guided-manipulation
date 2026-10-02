@@ -15,6 +15,8 @@ Fault parse_fault(const std::string & value)
   if (value == "reject") {return Fault::reject;}
   if (value == "stuck") {return Fault::stuck;}
   if (value == "feedback_loss") {return Fault::feedback_loss;}
+  if (value == "cancel_reject") {return Fault::cancel_reject;}
+  if (value == "controller_failure") {return Fault::controller_failure;}
   throw std::invalid_argument("unknown fault mode: " + value);
 }
 
@@ -74,6 +76,9 @@ void FakeArmBackend::advance(double seconds)
       positions_[i] = start_[i] + (target_[i] - start_[i]) * ratio;
     }
     if (ratio >= 1.0) {state_ = State::succeeded;}
+    if (fault_ == Fault::controller_failure && elapsed_ >= fault_after_) {
+      state_ = State::failed;
+    }
   }
   if (!(fault_ == Fault::feedback_loss && elapsed_ >= fault_after_ &&
     state_ != State::idle))
@@ -84,7 +89,8 @@ void FakeArmBackend::advance(double seconds)
 
 bool FakeArmBackend::cancel()
 {
-  if (state_ != State::executing) {return false;}
+  if (fault_ == Fault::cancel_reject) {return false;}
+  if (state_ != State::executing && state_ != State::failed) {return false;}
   state_ = State::canceled;
   return true;
 }

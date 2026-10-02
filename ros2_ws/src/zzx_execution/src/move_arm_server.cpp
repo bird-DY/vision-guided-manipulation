@@ -11,6 +11,7 @@
 #include "rclcpp_action/rclcpp_action.hpp"
 #include "zzx_interfaces/action/move_arm.hpp"
 #include "zzx_execution/fake_arm_backend.hpp"
+#include "zzx_execution/execution_monitor.hpp"
 
 namespace zzx_execution
 {
@@ -35,6 +36,19 @@ public:
       std::vector<double>(names.size(), 3.141592653589793));
     tolerance_ = declare_parameter("position_tolerance", 0.001);
     settling_ = declare_parameter("settling_seconds", 0.1);
+    MonitorConfig monitoring;
+    monitoring.continuous = declare_parameter<std::vector<bool>>("continuous_joints",
+      std::vector<bool>(names.size(), false));
+    if (monitoring.continuous.size() != names.size()) {
+      throw std::invalid_argument("continuous_joints must match joint_names");
+    }
+    monitoring.position_tolerance = tolerance_;
+    monitoring.settling_seconds = settling_;
+    monitoring.velocity_tolerance = declare_parameter("velocity_tolerance", 0.01);
+    monitoring.feedback_timeout = declare_parameter("feedback_timeout_seconds", 0.2);
+    feedback_timeout_ = monitoring.feedback_timeout;
+    monitoring.stop_timeout = declare_parameter("stop_timeout_seconds", 0.5);
+    monitor_ = std::make_unique<ExecutionMonitor>(monitoring);
     backend_ = std::make_unique<FakeArmBackend>(names, initial,
       parse_fault(declare_parameter("fault", std::string("normal"))),
       declare_parameter("duration_seconds", 1.0),
@@ -71,8 +85,10 @@ private:
   {
     sensor_msgs::msg::JointState result;
     const auto feedback = backend_->feedback();
-    if (feedback.available) {
-      result.header.stamp = now();
+    if (feedback.available && sample_time_ >= 0 &&
+      seconds(Clock::now()) - sample_time_ <= feedback_timeout_)
+    {
+      result.header.stamp = sample_ros_stamp_;
       result.name = backend_->names();
       result.position = feedback.positions;
     }
@@ -148,8 +164,9 @@ private:
       return;
     }
     started_ = last_tick_ = Clock::now();
-    settled_since_ = Clock::time_point{};
     timeout_ = request->timeout.sec + request->timeout.nanosec * 1e-9;
+    stopping_ = false;
+    monitor_->start(target_, seconds(started_), timeout_);
     // Synthetic duration scaling only, not a physical velocity/acceleration controller.
     scale_ = std::min(request->velocity_scaling, std::sqrt(request->acceleration_scaling));
     publish(Status::STATE_EXECUTING, "executing", 0);
@@ -194,46 +211,84 @@ private:
     const double dt = std::chrono::duration<double>(current - last_tick_).count();
     last_tick_ = current;
     backend_->advance(dt * (active_ ? scale_ : 1.0));
-    if (backend_->feedback().available) {publisher_->publish(joints());}
-    if (!active_) {return;}
-    if (!backend_->feedback().available) {
-      backend_->cancel();
-      ready_ = false;
-      finish(Error::STALE_DATA, "feedback lost; restart fake server to recover");
-      return;
-    }
-    if (active_->is_canceling()) {
-      backend_->cancel();
-      finish(Error::CANCELED, "fake execution canceled");
-      return;
-    }
-    if (std::chrono::duration<double>(current - started_).count() >= timeout_) {
-      backend_->cancel();
-      finish(Error::TIMEOUT, "execution deadline exceeded");
-      return;
-    }
     const auto feedback = backend_->feedback();
-    double max_error = 0;
-    for (size_t i = 0; i < target_.size(); ++i) {
-      max_error = std::max(max_error, std::abs(target_[i] - feedback.positions[i]));
+    if (feedback.available && feedback.stamp_seconds > source_stamp_) {
+      source_stamp_ = feedback.stamp_seconds;
+      sample_time_ = seconds(current);
+      sample_ros_stamp_ = now();
+      publisher_->publish(joints());
     }
-    if (backend_->state() == State::succeeded && max_error <= tolerance_) {
-      if (settled_since_ == Clock::time_point{}) {settled_since_ = current;}
-      publish(Status::STATE_SETTLING, "settling", 0.95f);
-      if (std::chrono::duration<double>(current - settled_since_).count() >= settling_) {
+    if (!active_) {return;}
+    const double time = seconds(current);
+    if (active_->is_canceling() && !stopping_) {
+      begin_stop(time, Error::CANCELED, "cancel requested");
+    }
+    ControllerResult controller = ControllerResult::running;
+    if (backend_->state() == State::succeeded) {controller = ControllerResult::succeeded;}
+    if (backend_->state() == State::canceled) {controller = ControllerResult::canceled;}
+    if (backend_->state() == State::failed) {controller = ControllerResult::failed;}
+    const auto verdict = monitor_->update(time, sample_time_, feedback.positions,
+      feedback.available, controller);
+    switch (verdict) {
+      case Verdict::stale:
+        ready_ = false;
+        begin_stop(time, Error::STALE_DATA, "feedback lost or stale");
+        break;
+      case Verdict::failed:
+        begin_stop(time, Error::EXECUTION_FAILED, "controller failed");
+        break;
+      case Verdict::timeout:
+        begin_stop(time, Error::TIMEOUT, "execution deadline exceeded");
+        break;
+      case Verdict::stop_unconfirmed:
+        ready_ = false;
+        finish(Error::STOP_UNCONFIRMED, stop_reason_ + "; stop not confirmed; restart required");
+        break;
+      case Verdict::stopped:
+        finish(stop_code_, stop_reason_ + "; stop confirmed");
+        break;
+      case Verdict::succeeded:
         finish(Error::OK, "target reached and settled");
-      }
-    } else {
-      settled_since_ = Clock::time_point{};
-      publish(Status::STATE_EXECUTING, "executing", 0.5f);
+        break;
+      case Verdict::settling:
+        publish(Status::STATE_SETTLING, "settling", 0.95f);
+        break;
+      case Verdict::stopping:
+        publish(Status::STATE_EXECUTING, "confirming_stop", status_.progress);
+        break;
+      case Verdict::running:
+        publish(Status::STATE_EXECUTING, "executing", 0.5f);
+        break;
     }
   }
 
+  static double seconds(Clock::time_point time)
+  {
+    return std::chrono::duration<double>(time.time_since_epoch()).count();
+  }
+
+  void begin_stop(double time, int32_t code, const std::string & reason)
+  {
+    if (stopping_) {return;}
+    stopping_ = true;
+    stop_code_ = code;
+    stop_reason_ = reason;
+    monitor_->request_stop(time);
+    backend_->cancel();
+    publish(Status::STATE_EXECUTING, "confirming_stop", status_.progress);
+  }
+
   std::unique_ptr<FakeArmBackend> backend_;
+  std::unique_ptr<ExecutionMonitor> monitor_;
   std::vector<double> lower_, upper_, target_;
   double tolerance_, settling_, timeout_{0}, scale_{1};
   bool reserved_{false}, ready_{true};
-  Clock::time_point last_tick_, started_, settled_since_;
+  Clock::time_point last_tick_, started_;
+  double feedback_timeout_{0.2}, sample_time_{-1}, source_stamp_{-1};
+  builtin_interfaces::msg::Time sample_ros_stamp_;
+  bool stopping_{false};
+  int32_t stop_code_{Error::OK};
+  std::string stop_reason_;
   Status status_;
   std::shared_ptr<Handle> active_;
   rclcpp_action::Server<Action>::SharedPtr server_;

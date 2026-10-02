@@ -167,7 +167,8 @@ class MoveArmTest(unittest.TestCase):
     def test_feedback_loss_latches_unavailable(self):
         self.start('feedback_loss')
         result = self.result(self.send(self.goal())).result
-        self.assertEqual(result.error.code, ErrorStatus.STALE_DATA)
+        self.assertEqual(result.error.code, ErrorStatus.STOP_UNCONFIRMED)
+        self.assertIn('feedback', result.error.message)
         self.assertEqual(list(result.final_joint_state.position), [])
         self.assertFalse(self.send(self.goal()).accepted)
 
@@ -176,6 +177,26 @@ class MoveArmTest(unittest.TestCase):
         result = self.result(self.send(self.goal())).result
         self.assertEqual(result.error.code, ErrorStatus.BACKEND_REJECTED)
         self.assertFalse(result.success)
+
+    def test_controller_failure_stops_before_reporting(self):
+        self.start('controller_failure')
+        result = self.result(self.send(self.goal())).result
+        self.assertEqual(result.error.code, ErrorStatus.EXECUTION_FAILED)
+        self.assertIn('stop confirmed', result.error.message)
+        self.assertFalse(result.success)
+
+    def test_cancel_rejection_locks_new_goals(self):
+        self.start('cancel_reject')
+        goal = self.goal()
+        goal.velocity_scaling = 0.1
+        handle = self.send(goal)
+        self.wait(lambda: self.samples[-1].position[0] > 0)
+        cancellation = handle.cancel_goal_async()
+        self.wait(cancellation.done)
+        result = self.result(handle)
+        self.assertEqual(result.status, 6)
+        self.assertEqual(result.result.error.code, ErrorStatus.STOP_UNCONFIRMED)
+        self.assertFalse(self.send(self.goal()).accepted)
 
 
 if __name__ == '__main__':

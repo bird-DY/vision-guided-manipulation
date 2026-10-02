@@ -7,7 +7,7 @@ find_package(zzx_interfaces REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(std_srvs REQUIRED)
 
-add_library(fake_arm_backend src/fake_arm_backend.cpp)
+add_library(fake_arm_backend src/fake_arm_backend.cpp src/execution_monitor.cpp)
 target_compile_features(fake_arm_backend PUBLIC cxx_std_17)
 target_include_directories(fake_arm_backend PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -31,6 +31,8 @@ if(BUILD_TESTING)
   find_package(ament_cmake_gtest REQUIRED)
   ament_add_gtest(test_fake_arm_backend test/test_fake_arm_backend.cpp)
   target_link_libraries(test_fake_arm_backend fake_arm_backend)
+  ament_add_gtest(test_execution_monitor test/test_execution_monitor.cpp)
+  target_link_libraries(test_execution_monitor fake_arm_backend)
   find_package(ament_cmake_pytest REQUIRED)
   ament_add_pytest_test(test_ros_smoke test/test_ros_smoke.py
     TIMEOUT 45 ENV ROS_DOMAIN_ID=86 ROS_LOCALHOST_ONLY=1

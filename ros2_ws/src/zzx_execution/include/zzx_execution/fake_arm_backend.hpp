@@ -9,8 +9,8 @@
 
 namespace zzx_execution
 {
-enum class Fault {normal, slow, reject, stuck, feedback_loss};
-enum class State {idle, executing, succeeded, canceled};
+enum class Fault {normal, slow, reject, stuck, feedback_loss, cancel_reject, controller_failure};
+enum class State {idle, executing, succeeded, canceled, failed};
 
 struct Feedback
 {

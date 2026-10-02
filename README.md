@@ -29,6 +29,7 @@
 - [Robot profile 使用说明](docs/robot_profiles.md)
 - [B05 代码导读与 VS Code 操作](docs/code_walkthrough.md)
 - [B06 MoveArm Action 实现与运行](docs/move_arm_action.md)
+- [B07 执行监控与停止确认](docs/execution_monitor.md)
 - [统一 ROS 2 接口说明](ros2_ws/src/zzx_interfaces/README.md)
 
 ## 目录
