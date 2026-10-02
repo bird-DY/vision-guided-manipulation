@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>zzx_task_runtime</name>
+  <version>0.1.0</version>
+  <description>Durable idempotent dispatch for robot operations.</description>
+  <maintainer email="764472556@qq.com">zzx</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>ament_python</buildtool_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>zzx_interfaces</exec_depend>
+  <exec_depend>rosidl_runtime_py</exec_depend>
+  <exec_depend>unique_identifier_msgs</exec_depend>
+  <test_depend>python3-pytest</test_depend>
+  <test_depend>ament_index_python</test_depend>
+  <test_depend>zzx_execution</test_depend>
+  <test_depend>rmw_cyclonedds_cpp</test_depend>
+  <export><build_type>ament_python</build_type></export>
+</package>

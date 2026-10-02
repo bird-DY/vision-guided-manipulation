@@ -30,6 +30,7 @@
 - [B05 代码导读与 VS Code 操作](docs/code_walkthrough.md)
 - [B06 MoveArm Action 实现与运行](docs/move_arm_action.md)
 - [B07 执行监控与停止确认](docs/execution_monitor.md)
+- [B08 任务幂等与结果持久化](docs/task_persistence.md)
 - [统一 ROS 2 接口说明](ros2_ws/src/zzx_interfaces/README.md)
 
 ## 目录
@@ -40,6 +41,7 @@ ros2_ws/src/zzx_interfaces  项目统一消息、服务和动作接口
 ros2_ws/src/zzx_contracts   Python 语义校验与只读契约监视节点
 ros2_ws/src/zzx_execution   C++ 假机械臂、MoveArm Action 与故障回归测试
 configs/                    Robot、工具及后续 site profile
+ros2_ws/src/zzx_task_runtime SQLite 幂等入口与 MoveArm 持久化适配
 docs/                       架构、调研、实施和实验文档
 scripts/                    后续环境、自检、记录与发布工具
 tests/                      后续跨包契约和端到端测试

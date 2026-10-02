@@ -1,0 +1,8 @@
+{
+  "joint_names": ["joint1", "joint2", "joint3", "joint4", "joint5", "joint6"],
+  "positions": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6],
+  "velocity_scaling": 1.0,
+  "acceleration_scaling": 1.0,
+  "plan_only": false,
+  "timeout_seconds": 5.0
+}
