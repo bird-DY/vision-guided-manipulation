@@ -14,8 +14,12 @@ __pycache__/
 *.pyo
 .pytest_cache/
 
-# IDE
-.vscode/
+# IDE: share only reviewed project tasks and debug settings
+**/.vscode/*
+!/.vscode/extensions.json
+!/.vscode/tasks.json
+!/.vscode/launch.json
+!/.vscode/c_cpp_properties.json
 .idea/
 
 # Runtime data

@@ -1,0 +1,7 @@
+fake_arm_backend:
+  ros__parameters:
+    joint_names: [joint1, joint2, joint3, joint4, joint5, joint6]
+    initial_positions: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    fault: normal
+    duration_seconds: 1.0
+    fault_after_seconds: 0.25

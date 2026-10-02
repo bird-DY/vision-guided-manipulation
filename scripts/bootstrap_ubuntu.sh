@@ -20,6 +20,7 @@ sudo apt-get install -y \
   build-essential \
   curl \
   git \
+  gdb \
   python3-colcon-common-extensions \
   python3-jsonschema \
   python3-opencv \
@@ -39,6 +40,7 @@ sudo apt-get install -y \
   "ros-${ROS_DISTRO}-navigation2" \
   "ros-${ROS_DISTRO}-nav2-bringup" \
   "ros-${ROS_DISTRO}-ros-base" \
+  "ros-${ROS_DISTRO}-rmw-cyclonedds-cpp" \
   "ros-${ROS_DISTRO}-ros2-control" \
   "ros-${ROS_DISTRO}-ros2-controllers" \
   "ros-${ROS_DISTRO}-xacro"

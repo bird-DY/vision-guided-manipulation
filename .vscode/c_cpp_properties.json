@@ -1,0 +1,10 @@
+{
+  "version": 4,
+  "configurations": [{
+    "name": "WSL-Humble",
+    "compilerPath": "/usr/bin/g++",
+    "compileCommands": "${workspaceFolder}/ros2_ws/build/zzx_execution/compile_commands.json",
+    "cppStandard": "c++17",
+    "intelliSenseMode": "linux-gcc-x64"
+  }]
+}

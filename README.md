@@ -16,6 +16,7 @@
 - 修复上游 Python 空字节测试、Cartographer 启动格式和原型节点静态检查问题。
 - 建立严格 robot profile、工具注册表和自动运行标定门禁，隔离仿真六轴与比赛七轴/O10 配置。
 - 将 `zzx_interfaces` 升级到 0.2，统一目标质量、标定来源、后端能力、执行状态和错误码，并加入运行时契约监视。
+- 新增 `zzx_execution` C++ 确定性假机械臂后端，支持慢执行、拒绝、卡住、断反馈和取消，并提供 VS Code 构建、测试和断点入口。
 
 正在规划和实施：C++ 执行监控、可靠 RGB-D 定位、手眼/TCP 标定、MoveIt Task Constructor 抓放、行为树、比赛 HTTP 适配、故障注入和自动评测。路线图中的指标均为待实验的验收目标，不是现有成绩。
 
@@ -26,6 +27,7 @@
 - [开发环境基线](docs/environment.md)
 - [上游来源清单](docs/source_manifest.md)
 - [Robot profile 使用说明](docs/robot_profiles.md)
+- [B05 代码导读与 VS Code 操作](docs/code_walkthrough.md)
 - [统一 ROS 2 接口说明](ros2_ws/src/zzx_interfaces/README.md)
 
 ## 目录
@@ -34,6 +36,7 @@
 ros2_ws/src/Zzxrobot/       LeoRobot 上游代码与可复现基线
 ros2_ws/src/zzx_interfaces  项目统一消息、服务和动作接口
 ros2_ws/src/zzx_contracts   Python 语义校验与只读契约监视节点
+ros2_ws/src/zzx_execution   C++ 假机械臂后端及故障回归测试
 configs/                    Robot、工具及后续 site profile
 docs/                       架构、调研、实施和实验文档
 scripts/                    后续环境、自检、记录与发布工具
@@ -59,7 +62,7 @@ colcon test-result --verbose
 python3 scripts/validate_controller_mapping.py
 ```
 
-当前 Humble 基线完成 6 个包构建，测试汇总为 52 项、0 错误、0 失败、2 项工具性检查跳过。该结果只证明构建、接口序列化、语义校验和静态测试通过，不代表 Gazebo 动态控制、真机执行或视觉精度已经验收。
+B04 Humble 基线完成 6 个包构建，测试汇总为 52 项、0 错误、0 失败、2 项工具性检查跳过。B05 新增第 7 个包 `zzx_execution` 并完成单包 Debug 构建：10 个 C++ 用例和 3 个真实 ROS 通信用例通过（colcon 含测试容器记录汇总为 15 项）。GDB 批处理运行验证通过，VS Code 图形界面中的 F5 尚未实测。这些结果不代表 Gazebo 动态控制、真机执行或视觉精度已经验收。
 
 Robot profile 修改后必须运行：
 

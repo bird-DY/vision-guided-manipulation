@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "B05: debug backend tests",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/ros2_ws/build/zzx_execution/test_fake_arm_backend",
+      "cwd": "${workspaceFolder}",
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "preLaunchTask": "B05: build",
+      "externalConsole": false
+    }
+  ]
+}

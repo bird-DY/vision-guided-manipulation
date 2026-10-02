@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>zzx_execution</name>
+  <version>0.1.0</version>
+  <description>Deterministic fake arm backend for execution fault testing.</description>
+  <maintainer email="764472556@qq.com">zzx</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>rclcpp</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_srvs</depend>
+  <test_depend>ament_cmake_gtest</test_depend>
+  <test_depend>ament_cmake_pytest</test_depend>
+  <test_depend>rclpy</test_depend>
+  <test_depend>ament_index_python</test_depend>
+  <test_depend>rmw_cyclonedds_cpp</test_depend>
+  <export><build_type>ament_cmake</build_type></export>
+</package>

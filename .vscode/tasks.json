@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "B05: build",
+      "type": "process",
+      "command": "bash",
+      "args": ["-c", "source /opt/ros/humble/setup.bash && colcon build --symlink-install --packages-select zzx_execution --cmake-args -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"],
+      "options": {"cwd": "${workspaceFolder}/ros2_ws"},
+      "problemMatcher": ["$gcc"],
+      "group": {"kind": "build", "isDefault": true}
+    },
+    {
+      "label": "B05: test",
+      "type": "process",
+      "command": "bash",
+      "args": ["-c", "source /opt/ros/humble/setup.bash && source install/setup.bash && colcon test --packages-select zzx_execution && colcon test-result --test-result-base build/zzx_execution --verbose"],
+      "options": {"cwd": "${workspaceFolder}/ros2_ws"},
+      "dependsOn": "B05: build",
+      "problemMatcher": []
+    },
+    {
+      "label": "B05: ROS smoke test",
+      "type": "process",
+      "command": "bash",
+      "args": ["-c", "source /opt/ros/humble/setup.bash && source install/setup.bash && /usr/bin/python3 src/zzx_execution/test/test_ros_smoke.py -v"],
+      "options": {"cwd": "${workspaceFolder}/ros2_ws", "env": {"ROS_DOMAIN_ID": "86", "ROS_LOCALHOST_ONLY": "1", "RMW_IMPLEMENTATION": "rmw_cyclonedds_cpp"}},
+      "dependsOn": "B05: build",
+      "problemMatcher": []
+    }
+  ]
+}
