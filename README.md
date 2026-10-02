@@ -32,6 +32,7 @@
 - [B07 执行监控与停止确认](docs/execution_monitor.md)
 - [B08 任务幂等与结果持久化](docs/task_persistence.md)
 - [B09 比赛 HTTP 假服务与契约测试](docs/http_contracts.md)
+- [B10 HTTP ROS 2 Action 适配节点](docs/http_action_backend.md)
 - [统一 ROS 2 接口说明](ros2_ws/src/zzx_interfaces/README.md)
 
 ## 目录
@@ -44,6 +45,7 @@ ros2_ws/src/zzx_execution   C++ 假机械臂、MoveArm Action 与故障回归测
 configs/                    Robot、工具及后续 site profile
 ros2_ws/src/zzx_task_runtime SQLite 幂等入口与 MoveArm 持久化适配
 ros2_ws/src/zzx_http_contracts 比赛 HTTP 环回假服务与协议回归
+ros2_ws/src/zzx_http_backend  HTTP 工作线程与统一 Action 适配
 docs/                       架构、调研、实施和实验文档
 scripts/                    后续环境、自检、记录与发布工具
 tests/                      后续跨包契约和端到端测试

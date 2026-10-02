@@ -1,0 +1,10 @@
+{
+  "arm": {"backend_id": "competition_http_arm_loopback", "joint_target": true,
+          "pose_target": false, "trajectory": false, "cancel": true,
+          "force_control": false, "plan_only": true, "teach_mode": true,
+          "position_command": false},
+  "hand": {"backend_id": "competition_http_hand_loopback", "joint_target": false,
+           "pose_target": false, "trajectory": false, "cancel": false,
+           "force_control": false, "plan_only": false, "teach_mode": false,
+           "position_command": true}
+}
