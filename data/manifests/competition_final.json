@@ -1,0 +1,1937 @@
+{
+  "schema_version": 1,
+  "dataset_id": "competition_final_inventory",
+  "importer": "zzx_datasets.import-final.v1",
+  "unmapped_files": [
+    "arm_debug/green_plan_debug.json",
+    "arm_debug/obs_execute_debug.json",
+    "arm_debug/obs_execute_prepare_debug.json",
+    "arm_debug/obs_plan_debug.json",
+    "arm_debug/white_finish_plan_debug.json",
+    "arm_debug/white_ready_plan_debug.json",
+    "charuco_calib/intrinsics_result.json",
+    "charuco_screenshot_overlay.jpg",
+    "task_runtime.log"
+  ],
+  "samples": [
+    {
+      "id": "20260819_131211_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_131211_panel.jpg",
+          "sha256": "46cea96f093d182b6f2f1fc85c62fcdedcf29a02d2825da886b541e4c5ece243",
+          "bytes": 215905
+        }
+      }
+    },
+    {
+      "id": "20260819_153830_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_153830_panel.jpg",
+          "sha256": "80a6599ddffa64d786fa5775492e51b646d2a1e2af6492018aa7144b267910a9",
+          "bytes": 169461
+        }
+      }
+    },
+    {
+      "id": "20260819_153847_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_153847_panel.jpg",
+          "sha256": "f74daeecb42150628b7f7f7ea436ca59802e3aa4c483d1722d6f279bbf5c4e95",
+          "bytes": 169243
+        }
+      }
+    },
+    {
+      "id": "20260819_154038_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_154038_panel.jpg",
+          "sha256": "6c1f1f2b7e4610d47025e6190c9b7e22c1760805174cf0a969173b286ce2b893",
+          "bytes": 168410
+        }
+      }
+    },
+    {
+      "id": "20260819_160849_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_160849_panel.jpg",
+          "sha256": "4f21c061c82e27c61af42ec33be8bb5af4fe18bfc16605d6283f06898f349865",
+          "bytes": 156576
+        }
+      }
+    },
+    {
+      "id": "20260819_160933_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_160933_panel.jpg",
+          "sha256": "7622fffc6c1e225a30962a839090c8fa4411923ecf647a207a4565571a4e6163",
+          "bytes": 160792
+        }
+      }
+    },
+    {
+      "id": "20260819_161255_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_161255_panel.jpg",
+          "sha256": "12c6c7b8a4fee2d6ed9743ee177fb40be6b7b4e259c33dd389bb6e1572ca1e18",
+          "bytes": 164928
+        }
+      }
+    },
+    {
+      "id": "20260819_162117_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_162117_panel.jpg",
+          "sha256": "e8186db65aabe3d836c0bb52bc17f4c2bf590e9599ca8a37b0e0044f34f5de06",
+          "bytes": 167421
+        }
+      }
+    },
+    {
+      "id": "20260819_162138_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_162138_panel.jpg",
+          "sha256": "0690100f7987b382537f46c46bca4721031826957db95ad07945b18295a41543",
+          "bytes": 173457
+        }
+      }
+    },
+    {
+      "id": "20260819_162221_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_162221_panel.jpg",
+          "sha256": "d88ca681bce7dddd8e806e24bde9454f25ea0e2caa70b83d740d2450d553ee78",
+          "bytes": 171626
+        }
+      }
+    },
+    {
+      "id": "20260819_164010_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_164010_panel.jpg",
+          "sha256": "e8e33066ea2862fc2def37f67962ba13102f2aa99fae05ccd1bb4535e945a339",
+          "bytes": 157837
+        }
+      }
+    },
+    {
+      "id": "20260819_164031_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_164031_panel.jpg",
+          "sha256": "c604c2bd8ac9c4ac362231f9357415c7eb93473d1a54ee28c7b7ab8db601ca83",
+          "bytes": 170160
+        }
+      }
+    },
+    {
+      "id": "20260819_165657_panel_failed.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_165657_panel_failed.jpg",
+          "sha256": "0457396f4be9318c8970a11dd723a26d4b3f2948bee5de0f2e9b7cecbf0eae64",
+          "bytes": 168600
+        }
+      }
+    },
+    {
+      "id": "20260819_165711_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_165711_panel.jpg",
+          "sha256": "285cf2bdac2caa3eed53dd62f1151c3d47ce67eae9c7a7e7cf21a8ce801f49aa",
+          "bytes": 171496
+        }
+      }
+    },
+    {
+      "id": "20260819_165740_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_165740_panel.jpg",
+          "sha256": "83203f7c889113e796527f6ca90665870423aec196b7d29469026de343cf9bf6",
+          "bytes": 174342
+        }
+      }
+    },
+    {
+      "id": "20260819_165816_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_165816_panel.jpg",
+          "sha256": "3bcfa6634ec0c4514195069ff10161c9ddb03dfaaf99e0f13e9c40a76fabc873",
+          "bytes": 176789
+        }
+      }
+    },
+    {
+      "id": "20260819_173632_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_173632_panel.jpg",
+          "sha256": "7a66c85630514986641aecda847f073f60112a7da514738aa4b33455ed9b20e2",
+          "bytes": 164320
+        }
+      }
+    },
+    {
+      "id": "20260819_173657_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_173657_panel.jpg",
+          "sha256": "5d0c071ab1c7d05d0802d8db0cf52a0af7fe3871a682b8acaa08517f1eea667b",
+          "bytes": 166625
+        }
+      }
+    },
+    {
+      "id": "20260819_173748_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_173748_panel.jpg",
+          "sha256": "825cbeb6b336e9b9ec0bdf570ed3757e207f5209b23eafc797d0f63f479f83ac",
+          "bytes": 170040
+        }
+      }
+    },
+    {
+      "id": "20260819_173839_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_173839_panel.jpg",
+          "sha256": "533cf83a59062bfe4337539c3ddbdec290e6bdb84bdf73a73add69744b6d9107",
+          "bytes": 154045
+        }
+      }
+    },
+    {
+      "id": "20260819_173856_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_173856_panel.jpg",
+          "sha256": "d5354c766a3224790b23739b06a40e6d9388c59007d6bcc05dcbf4400d7d202c",
+          "bytes": 176029
+        }
+      }
+    },
+    {
+      "id": "20260819_174003_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260819_174003_panel.jpg",
+          "sha256": "3548038075dba332152d423f0d9745dcddd9958e5773fa91f289797e1794e91f",
+          "bytes": 151094
+        }
+      }
+    },
+    {
+      "id": "20260820_102711_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260820_102711_panel.jpg",
+          "sha256": "622d9e0fdfdad20e413066c203441465d13858a397f8d6848c0b7a4620869872",
+          "bytes": 171513
+        }
+      }
+    },
+    {
+      "id": "20260820_102759_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260820_102759_panel.jpg",
+          "sha256": "44c9a298b6f1dc002b60349a71b24d9a80e3967d8211abf9f133db8fea5b758c",
+          "bytes": 157579
+        }
+      }
+    },
+    {
+      "id": "20260820_102814_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260820_102814_panel.jpg",
+          "sha256": "c550f2973800952b2a9b5c38f621a50ff7e299347842a694c0c22f92d7eca75a",
+          "bytes": 146889
+        }
+      }
+    },
+    {
+      "id": "20260820_102855_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260820_102855_panel.jpg",
+          "sha256": "baad50abc382c378d166f0f9a5856220b45db035b5f3e47429022667316618f8",
+          "bytes": 137650
+        }
+      }
+    },
+    {
+      "id": "20260820_102955_panel.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "panel",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": null,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": null,
+      "depth_scale_m": null,
+      "intrinsics": null,
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "20260820_102955_panel.jpg",
+          "sha256": "e856c8199d00b851e4034498298395aa8a6c2bea17f5c8984f7a580d23eb3e7b",
+          "bytes": 156597
+        }
+      }
+    },
+    {
+      "id": "charuco_calib__intr_001_color.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "charuco",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": 1787113217424629248,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": [
+        1280,
+        720
+      ],
+      "depth_scale_m": 1.0,
+      "intrinsics": {
+        "width": 1280,
+        "height": 720,
+        "fx": 691.8985595703125,
+        "fy": 691.6793823242188,
+        "cx": 638.9007568359375,
+        "cy": 358.09423828125
+      },
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "charuco_calib/intr_001_color.jpg",
+          "sha256": "317c440c4c58dd2178a128d55c0db36f2be3be479ffb13196175f6c80e110ca5",
+          "bytes": 171468
+        },
+        "depth": {
+          "path": "charuco_calib/intr_001_depth.npy",
+          "sha256": "f5d2da9d013c5e89a4ade3622bcc1997f705268f2e9a195bdcacee784fb79b62",
+          "bytes": 3686528
+        },
+        "metadata": {
+          "path": "charuco_calib/intr_001.json",
+          "sha256": "961bd218d6908bc13d4982b25896c5cba18daba95a0a09ba27022b8766584551",
+          "bytes": 1200
+        },
+        "overlay": {
+          "path": "charuco_calib/intr_001_overlay.jpg",
+          "sha256": "cdb73c49919a1f1c9ea3f8d0f3587b3fbc7b6b2b24d7f407bb4127a98d3dbf60",
+          "bytes": 207048
+        }
+      }
+    },
+    {
+      "id": "charuco_calib__intr_002_color.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "charuco",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": 1787114074771673344,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": [
+        1280,
+        720
+      ],
+      "depth_scale_m": 1.0,
+      "intrinsics": {
+        "width": 1280,
+        "height": 720,
+        "fx": 691.8985595703125,
+        "fy": 691.6793823242188,
+        "cx": 638.9007568359375,
+        "cy": 358.09423828125
+      },
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "charuco_calib/intr_002_color.jpg",
+          "sha256": "759cb552e8edf7fbf02527c61e83875a64472a6c77fe6db0645882c34e5fe1a1",
+          "bytes": 176586
+        },
+        "depth": {
+          "path": "charuco_calib/intr_002_depth.npy",
+          "sha256": "6eb30d0be877ca948ee2e5d8042fffcbf7cdedd8717889734149ea72569bed0c",
+          "bytes": 3686528
+        },
+        "metadata": {
+          "path": "charuco_calib/intr_002.json",
+          "sha256": "9e9ac875f52f02b0d240961b428e6ac6c633d3f35e05c53977435b62ba7cf364",
+          "bytes": 1200
+        },
+        "overlay": {
+          "path": "charuco_calib/intr_002_overlay.jpg",
+          "sha256": "1468ae654a979b4e99c5bbed1420988822f43a725d5823fd473d8726ae32c013",
+          "bytes": 212221
+        }
+      }
+    },
+    {
+      "id": "charuco_calib__intr_003_color.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "charuco",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": 1787114373979891712,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": [
+        1280,
+        720
+      ],
+      "depth_scale_m": 1.0,
+      "intrinsics": {
+        "width": 1280,
+        "height": 720,
+        "fx": 691.8985595703125,
+        "fy": 691.6793823242188,
+        "cx": 638.9007568359375,
+        "cy": 358.09423828125
+      },
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "charuco_calib/intr_003_color.jpg",
+          "sha256": "afcc9c8b7cdeeaef4fcea15cd1cf5d1c02b3039f3e2ab9acd1da74c23a03db7c",
+          "bytes": 179589
+        },
+        "depth": {
+          "path": "charuco_calib/intr_003_depth.npy",
+          "sha256": "e43367ca356df3cddb9787a4949e42e8473bc78f9373994aef38d58175491353",
+          "bytes": 3686528
+        },
+        "metadata": {
+          "path": "charuco_calib/intr_003.json",
+          "sha256": "41d8c8421ae7f2fa404ae4c7ebc219b3a2a5d0830ae1782cbb03b39bd892a0f0",
+          "bytes": 1199
+        },
+        "overlay": {
+          "path": "charuco_calib/intr_003_overlay.jpg",
+          "sha256": "c3c817c54a8e1618ce02da244d3ccbae11ce6e981e6346a1319472a8edcb28c9",
+          "bytes": 216803
+        }
+      }
+    },
+    {
+      "id": "charuco_calib__intr_004_color.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "charuco",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": 1787114480963656960,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": [
+        1280,
+        720
+      ],
+      "depth_scale_m": 1.0,
+      "intrinsics": {
+        "width": 1280,
+        "height": 720,
+        "fx": 691.8985595703125,
+        "fy": 691.6793823242188,
+        "cx": 638.9007568359375,
+        "cy": 358.09423828125
+      },
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "charuco_calib/intr_004_color.jpg",
+          "sha256": "21f017a3a19a34e42ea686865a82a9397bd23c2d70f074455777a9c5fbdbdefc",
+          "bytes": 174515
+        },
+        "depth": {
+          "path": "charuco_calib/intr_004_depth.npy",
+          "sha256": "928657c8992f07696469af1de6e8c5f4c3d97ad44b0add12a1374e5135780f50",
+          "bytes": 3686528
+        },
+        "metadata": {
+          "path": "charuco_calib/intr_004.json",
+          "sha256": "f816fda86f15cf3c87dc03013003c50c3d638ea9e7d3ff602df732376347a8ec",
+          "bytes": 1199
+        },
+        "overlay": {
+          "path": "charuco_calib/intr_004_overlay.jpg",
+          "sha256": "a59d904533ded3737955f085dc3532962b7cb10e398ac5c74914014d2641f450",
+          "bytes": 213495
+        }
+      }
+    },
+    {
+      "id": "charuco_calib__intr_005_color.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "charuco",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": 1787114982737879040,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": [
+        1280,
+        720
+      ],
+      "depth_scale_m": 1.0,
+      "intrinsics": {
+        "width": 1280,
+        "height": 720,
+        "fx": 691.8985595703125,
+        "fy": 691.6793823242188,
+        "cx": 638.9007568359375,
+        "cy": 358.09423828125
+      },
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "charuco_calib/intr_005_color.jpg",
+          "sha256": "1ea87415dec3770830caca578b2f89e9dae9be2f961a933fbf6a6f4bb98c1e4f",
+          "bytes": 180021
+        },
+        "depth": {
+          "path": "charuco_calib/intr_005_depth.npy",
+          "sha256": "e7ec17c77048f5bb2f5f1a26ad3c60a91e98d35c72c60a2832146ea1f4cffa83",
+          "bytes": 3686528
+        },
+        "metadata": {
+          "path": "charuco_calib/intr_005.json",
+          "sha256": "fb65c9402024cc6c71ffdaa9784da20aba44dc1aceea676b7fe5822216f1831e",
+          "bytes": 1199
+        },
+        "overlay": {
+          "path": "charuco_calib/intr_005_overlay.jpg",
+          "sha256": "ac20c49b63dff460208d8947aa5f63d07d1e62243776e0845389d634067afdc6",
+          "bytes": 217981
+        }
+      }
+    },
+    {
+      "id": "charuco_calib__intr_006_color.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "charuco",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": 1787115018558555136,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": [
+        1280,
+        720
+      ],
+      "depth_scale_m": 1.0,
+      "intrinsics": {
+        "width": 1280,
+        "height": 720,
+        "fx": 691.8985595703125,
+        "fy": 691.6793823242188,
+        "cx": 638.9007568359375,
+        "cy": 358.09423828125
+      },
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "charuco_calib/intr_006_color.jpg",
+          "sha256": "3f9a75bd65d969646dd9fd0f146ba1dcb27905bc56afc6169c2240508ba74c27",
+          "bytes": 182189
+        },
+        "depth": {
+          "path": "charuco_calib/intr_006_depth.npy",
+          "sha256": "6f963363189453c8443b15bc0a5d56381aa2971842f91588a6c5052a9eee9dbb",
+          "bytes": 3686528
+        },
+        "metadata": {
+          "path": "charuco_calib/intr_006.json",
+          "sha256": "88ecbcbb0e9e8e82853ef7c6dcb6846b3b357dcb755bf4370cc2bebdcaf16cdc",
+          "bytes": 1192
+        },
+        "overlay": {
+          "path": "charuco_calib/intr_006_overlay.jpg",
+          "sha256": "cf661d4c89de8f3732acb6d27729402ffe755357abaf15c0a59cf0f4bb37ab98",
+          "bytes": 219158
+        }
+      }
+    },
+    {
+      "id": "charuco_calib__intr_007_color.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "charuco",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": 1787115044077969408,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": [
+        1280,
+        720
+      ],
+      "depth_scale_m": 1.0,
+      "intrinsics": {
+        "width": 1280,
+        "height": 720,
+        "fx": 691.8985595703125,
+        "fy": 691.6793823242188,
+        "cx": 638.9007568359375,
+        "cy": 358.09423828125
+      },
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "charuco_calib/intr_007_color.jpg",
+          "sha256": "c149363a7db8fc930a7da44220c794b1d3e2c36b628f54abf103d50f58d1a41b",
+          "bytes": 194036
+        },
+        "depth": {
+          "path": "charuco_calib/intr_007_depth.npy",
+          "sha256": "8e350fe9a34dc62c4940a0d1b8755ae26ae7ce574f3aaef690f38520fae473a6",
+          "bytes": 3686528
+        },
+        "metadata": {
+          "path": "charuco_calib/intr_007.json",
+          "sha256": "c6cb62ad311f79147fde9451e2bf1228addb54609cad2e3f439b9932f364da0d",
+          "bytes": 1194
+        },
+        "overlay": {
+          "path": "charuco_calib/intr_007_overlay.jpg",
+          "sha256": "6f3ffbafe0e956d06dc0d7740ec71d100928611a73b5b0d6f4f889c8dc6ce3be",
+          "bytes": 226508
+        }
+      }
+    },
+    {
+      "id": "charuco_calib__intr_008_color.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "charuco",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": 1787115131912521984,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": [
+        1280,
+        720
+      ],
+      "depth_scale_m": 1.0,
+      "intrinsics": {
+        "width": 1280,
+        "height": 720,
+        "fx": 691.8985595703125,
+        "fy": 691.6793823242188,
+        "cx": 638.9007568359375,
+        "cy": 358.09423828125
+      },
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "charuco_calib/intr_008_color.jpg",
+          "sha256": "0b2223218e908fa19d6573fec08652ae6244b468a8004229b4153d4a32f3cd79",
+          "bytes": 198016
+        },
+        "depth": {
+          "path": "charuco_calib/intr_008_depth.npy",
+          "sha256": "3cfba19bae864de0cabfddc1bdadd486db5cb2ee9255e4f290e13b285a82c305",
+          "bytes": 3686528
+        },
+        "metadata": {
+          "path": "charuco_calib/intr_008.json",
+          "sha256": "aa16a1c6823d44cbd547a9f3146ded3929721deed81ea93e8edc282cae534ff6",
+          "bytes": 1198
+        },
+        "overlay": {
+          "path": "charuco_calib/intr_008_overlay.jpg",
+          "sha256": "e35de550d71e4c852f38879681555f737a12a7301f7efc35c84feb465adaaa3c",
+          "bytes": 233883
+        }
+      }
+    },
+    {
+      "id": "charuco_calib__intr_009_color.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "charuco",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": 1787115169624568832,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": [
+        1280,
+        720
+      ],
+      "depth_scale_m": 1.0,
+      "intrinsics": {
+        "width": 1280,
+        "height": 720,
+        "fx": 691.8985595703125,
+        "fy": 691.6793823242188,
+        "cx": 638.9007568359375,
+        "cy": 358.09423828125
+      },
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "charuco_calib/intr_009_color.jpg",
+          "sha256": "79b34fcf9463328a036e9cff04fb9a30eca0e965c0b92a677b44f4409508f6a7",
+          "bytes": 174100
+        },
+        "depth": {
+          "path": "charuco_calib/intr_009_depth.npy",
+          "sha256": "935f6105145dda7f70b9d7b07f4bfc6350f4b7cd5045c8357c52cc4ac2b40baa",
+          "bytes": 3686528
+        },
+        "metadata": {
+          "path": "charuco_calib/intr_009.json",
+          "sha256": "ae5592b0207bba07c8a07740e5e815f4d123791d48eee220a1579d443474f493",
+          "bytes": 1198
+        },
+        "overlay": {
+          "path": "charuco_calib/intr_009_overlay.jpg",
+          "sha256": "6765cb96dd8d9a6438665c83fa3740782256679e674087410455cc251ecae730",
+          "bytes": 215138
+        }
+      }
+    },
+    {
+      "id": "charuco_calib__intr_011_color.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "charuco",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": 1787115271387744512,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": [
+        1280,
+        720
+      ],
+      "depth_scale_m": 1.0,
+      "intrinsics": {
+        "width": 1280,
+        "height": 720,
+        "fx": 691.8985595703125,
+        "fy": 691.6793823242188,
+        "cx": 638.9007568359375,
+        "cy": 358.09423828125
+      },
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "charuco_calib/intr_011_color.jpg",
+          "sha256": "2c02a6ddbb614f34fd2f3c5a3a042b317c27cc573383280da534d6c4123e1552",
+          "bytes": 212990
+        },
+        "depth": {
+          "path": "charuco_calib/intr_011_depth.npy",
+          "sha256": "487f5adefb29f0a3375c15ecb86b30cfcfd221e9385c699a8dc66452be5d45cf",
+          "bytes": 3686528
+        },
+        "metadata": {
+          "path": "charuco_calib/intr_011.json",
+          "sha256": "d15230381cc6d6b0e1bf9f7f5b9a04205f506fc4ff81ef980e6cb53d7d35ea50",
+          "bytes": 1187
+        },
+        "overlay": {
+          "path": "charuco_calib/intr_011_overlay.jpg",
+          "sha256": "6ae3370f980be8fb64efd828fc5b40e95a60d0a2e69433b3c3d56df132672564",
+          "bytes": 245980
+        }
+      }
+    },
+    {
+      "id": "charuco_calib__intr_013_color.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "charuco",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": 1787115335187681024,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": [
+        1280,
+        720
+      ],
+      "depth_scale_m": 1.0,
+      "intrinsics": {
+        "width": 1280,
+        "height": 720,
+        "fx": 691.8985595703125,
+        "fy": 691.6793823242188,
+        "cx": 638.9007568359375,
+        "cy": 358.09423828125
+      },
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "charuco_calib/intr_013_color.jpg",
+          "sha256": "9daeec4e65cddf893b4a9f91f90bc4e4937c0412ae2b348a6f327da85741ac0b",
+          "bytes": 231330
+        },
+        "depth": {
+          "path": "charuco_calib/intr_013_depth.npy",
+          "sha256": "1d999214e6819bbc44763ba15fa6100afa335cdf7bd73348963e1d30e4162140",
+          "bytes": 3686528
+        },
+        "metadata": {
+          "path": "charuco_calib/intr_013.json",
+          "sha256": "038df77989da6c228dd5f2ab467eba43a109d72c4e728ef638b704225b8baca2",
+          "bytes": 1199
+        },
+        "overlay": {
+          "path": "charuco_calib/intr_013_overlay.jpg",
+          "sha256": "859a771c200da70d7a94c0de0893ce6d35cbbcfd845073f255a705d7b76032e1",
+          "bytes": 257871
+        }
+      }
+    },
+    {
+      "id": "charuco_calib__intr_014_color.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "charuco",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": 1787115462038881024,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": [
+        1280,
+        720
+      ],
+      "depth_scale_m": 1.0,
+      "intrinsics": {
+        "width": 1280,
+        "height": 720,
+        "fx": 691.8985595703125,
+        "fy": 691.6793823242188,
+        "cx": 638.9007568359375,
+        "cy": 358.09423828125
+      },
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "charuco_calib/intr_014_color.jpg",
+          "sha256": "1e3c9a07b43b431841ad61e8ebe084912529d66425b43f074a4308a047451b82",
+          "bytes": 195102
+        },
+        "depth": {
+          "path": "charuco_calib/intr_014_depth.npy",
+          "sha256": "9bfdeb3fefcd4849b8977aa9d6be15d9a0171d988fe690c3c3b1cdb6ed43bce2",
+          "bytes": 3686528
+        },
+        "metadata": {
+          "path": "charuco_calib/intr_014.json",
+          "sha256": "f76d6b27168991add80a78d609f56e29c6c3e30840b11cbc88c480d7e2b45d30",
+          "bytes": 1198
+        },
+        "overlay": {
+          "path": "charuco_calib/intr_014_overlay.jpg",
+          "sha256": "d0969ca42f698bffeece574183d9084da40147426d98fdd11a04512fe820ce31",
+          "bytes": 235850
+        }
+      }
+    },
+    {
+      "id": "charuco_calib__intr_015_color.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "charuco",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": 1787115485118662912,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": [
+        1280,
+        720
+      ],
+      "depth_scale_m": 1.0,
+      "intrinsics": {
+        "width": 1280,
+        "height": 720,
+        "fx": 691.8985595703125,
+        "fy": 691.6793823242188,
+        "cx": 638.9007568359375,
+        "cy": 358.09423828125
+      },
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "charuco_calib/intr_015_color.jpg",
+          "sha256": "d641e857d0e8424669901cbe9c43f5b848e75733667f3c5f69022e97f345d943",
+          "bytes": 190290
+        },
+        "depth": {
+          "path": "charuco_calib/intr_015_depth.npy",
+          "sha256": "a75af9e05e3f3cbd49e20b70822588946851c4f3163c3e0461ff9ee49147f4f8",
+          "bytes": 3686528
+        },
+        "metadata": {
+          "path": "charuco_calib/intr_015.json",
+          "sha256": "787667502b8c26e1f5bb77fdda65b2935ff79b5dfedcd324d2231e3a777ca438",
+          "bytes": 1199
+        },
+        "overlay": {
+          "path": "charuco_calib/intr_015_overlay.jpg",
+          "sha256": "de1b89b4a9b8a31cbda09bf534f57ff589041a662c6cb863451dcb75c6a353db",
+          "bytes": 227725
+        }
+      }
+    },
+    {
+      "id": "field_check_color.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "camera_check",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": 1787104632903577856,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": [
+        1280,
+        720
+      ],
+      "depth_scale_m": 1.0,
+      "intrinsics": {
+        "width": 1280,
+        "height": 720,
+        "fx": 691.8985595703125,
+        "fy": 691.6793823242188,
+        "cx": 638.9007568359375,
+        "cy": 358.09423828125
+      },
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "field_check_color.jpg",
+          "sha256": "9b2fae61b742a3fa2c6e0cca12501b99e36f1610d8fd4dd203cd8d90cdf23bb5",
+          "bytes": 135030
+        },
+        "depth": {
+          "path": "field_check_depth.npy",
+          "sha256": "a163100db93243d88fff46ba5cd19218cad8c2ec2600f13c32df2a1882cf2f9b",
+          "bytes": 3686528
+        },
+        "metadata": {
+          "path": "field_check_camera.json",
+          "sha256": "7e5f5b5e61ec84565fc6851efdeca81240686bbedf290320906c1c19a1ddd125",
+          "bytes": 185
+        }
+      }
+    },
+    {
+      "id": "tune_001_color.jpg",
+      "batch_id": "competition_final_unseparated_session",
+      "source": "competition_final_samples",
+      "scene": "camera_check",
+      "split": "unassigned",
+      "label": {
+        "status": "unknown",
+        "value": null
+      },
+      "color_timestamp_ns": null,
+      "depth_timestamp_ns": null,
+      "host_timestamp_ns": 1787107810074337792,
+      "capture_config": null,
+      "calibration_id": null,
+      "alignment": "unknown",
+      "alignment_evidence": null,
+      "color_size": [
+        1280,
+        720
+      ],
+      "depth_size": [
+        1280,
+        720
+      ],
+      "depth_scale_m": 1.0,
+      "intrinsics": {
+        "width": 1280,
+        "height": 720,
+        "fx": 691.8985595703125,
+        "fy": 691.6793823242188,
+        "cx": 638.9007568359375,
+        "cy": 358.09423828125
+      },
+      "notes": [
+        "Historic final_app saves depth_m; host time is not sensor time.",
+        "SDK intrinsics provenance is unverified; resize does not establish registration.",
+        "Detection stats and filename are not reviewed ground truth."
+      ],
+      "assets": {
+        "color": {
+          "path": "tune_001_color.jpg",
+          "sha256": "12ab4a8f764b4cc0df93b36f317e6d030e9bdf268a7d9ea39171f4d09a9e3086",
+          "bytes": 212772
+        },
+        "depth": {
+          "path": "tune_001_depth.npy",
+          "sha256": "ebb93d93648eb096ee1b95afccf27c80f9313c3eaa899b40eea0ecb729ff140c",
+          "bytes": 3686528
+        },
+        "metadata": {
+          "path": "tune_001_camera.json",
+          "sha256": "8f2f153d103b0f7b0ebc5026a83427f47486dc672bc88ec3e67f7fe90ab62101",
+          "bytes": 185
+        }
+      }
+    }
+  ]
+}

@@ -34,6 +34,7 @@
 - [B09 比赛 HTTP 假服务与契约测试](docs/http_contracts.md)
 - [B10 HTTP ROS 2 Action 适配节点](docs/http_action_backend.md)
 - [B11 统一启动、生命周期与命令所有权](docs/bringup_lifecycle.md)
+- [B12 RGB-D 清单、数据隔离与离线回放](docs/rgbd_datasets.md)
 - [统一 ROS 2 接口说明](ros2_ws/src/zzx_interfaces/README.md)
 
 ## 目录
@@ -48,6 +49,8 @@ ros2_ws/src/zzx_task_runtime SQLite 幂等入口与 MoveArm 持久化适配
 ros2_ws/src/zzx_http_contracts 比赛 HTTP 环回假服务与协议回归
 ros2_ws/src/zzx_http_backend  HTTP 工作线程与统一 Action 适配
 ros2_ws/src/zzx_bringup       profile 选择与受管启动
+ros2_ws/src/zzx_datasets      RGB-D 资产校验与只读离线回放
+data/manifests/              现场样本索引；原图和深度保留在外部
 docs/                       架构、调研、实施和实验文档
 scripts/                    后续环境、自检、记录与发布工具
 tests/                      后续跨包契约和端到端测试
