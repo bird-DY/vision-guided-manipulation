@@ -1,0 +1,5 @@
+{
+  "fake": {"package": "zzx_execution", "executable": "move_arm_server", "task_capable": true},
+  "http": {"package": "zzx_http_backend", "executable": "http_action_backend", "task_capable": true},
+  "sim": {"package": "mybot_description", "launch": "gazebo.launch.py", "task_capable": false}
+}

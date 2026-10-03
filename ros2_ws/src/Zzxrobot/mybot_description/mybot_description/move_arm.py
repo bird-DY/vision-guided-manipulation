@@ -1,4 +1,8 @@
 import rclpy
+import fcntl
+import os
+from pathlib import Path
+import re
 from rclpy.node import Node
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 import time
@@ -7,6 +11,19 @@ from std_msgs.msg import String
 
 class ArmController(Node):
     def __init__(self):
+        if os.environ.get('ZZX_ENABLE_LEGACY') != '1':
+            raise RuntimeError('Legacy motion is disabled; use the managed Action backend')
+        resource = os.environ.get('ZZX_ROBOT_ID', 'zzxrobot')
+        if not re.fullmatch(r'[A-Za-z0-9_-]{1,64}', resource):
+            raise ValueError('invalid ZZX_ROBOT_ID')
+        root = Path.home() / '.local/state/zzxrobot/owners'
+        root.mkdir(parents=True, exist_ok=True)
+        self._command_owner = open(root / (resource + '.lock'), 'a+b')
+        try:
+            fcntl.flock(self._command_owner, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except OSError:
+            self._command_owner.close()
+            raise RuntimeError('another command producer owns this robot')
         super().__init__('arm_controller')
         self.target_subscription = self.create_subscription(            # 导航节点的控制命令
             String,
@@ -24,9 +41,7 @@ class ArmController(Node):
             JointTrajectory,
             '/gripper_controller/joint_trajectory',
             10)        # 机械爪动作组
-        self.send_claw_trajectory([0.6, -0.6])
-        time.sleep(1)
-        self.send_arm_trajectory([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+        # Startup must not publish a physical command, even in explicit legacy mode.
         # self.timer = self.create_timer(1, self.play)
 
     def play(self, msg):             # 夹取动作，张开爪子，弯曲机械臂，收紧爪子夹取，抬升机械臂

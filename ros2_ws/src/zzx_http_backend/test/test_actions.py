@@ -12,6 +12,7 @@ from ament_index_python.packages import get_package_prefix
 import rclpy
 from rclpy.action import ActionClient
 from std_srvs.srv import Trigger
+from lifecycle_msgs.srv import ChangeState
 from zzx_interfaces.action import MoveArm, ControlHand
 from zzx_interfaces.msg import ErrorStatus as E
 from zzx_http_contracts.fake import FakeServer, Scenario
@@ -35,25 +36,42 @@ class HttpActionsTest(unittest.TestCase):
         self.node = rclpy.create_node('http_adapter_test')
         self.addCleanup(self.node.destroy_node)
 
-    def start(self, scenario=None):
+    def start(self, scenario=None, activate=True):
         self.arm_http = self.stack.enter_context(FakeServer(scenario=scenario))
         self.hand_http = self.stack.enter_context(FakeServer(kind='hand'))
         namespace = '/http_test_' + str(os.getpid()) + '_' + self._testMethodName
         executable = Path(get_package_prefix('zzx_http_backend')) / 'lib/zzx_http_backend/http_action_backend'
-        self.process = subprocess.Popen([
+        self.process_args = [
             str(executable), '--ros-args', '-r', '__ns:=' + namespace,
-            '-p', 'arm_url:=' + self.arm_http.url, '-p', 'hand_url:=' + self.hand_http.url])
+            '-p', 'arm_url:=' + self.arm_http.url, '-p', 'hand_url:=' + self.hand_http.url]
+        self.process = subprocess.Popen(self.process_args)
         self.addCleanup(self.stop_process)
         self.arm = ActionClient(self.node, MoveArm, namespace + '/zzx/manipulation/move_arm')
         self.hand = ActionClient(self.node, ControlHand, namespace + '/zzx/manipulation/control_hand')
         self.addCleanup(self.arm.destroy)
         self.addCleanup(self.hand.destroy)
         self.status = self.node.create_client(Trigger, namespace + '/http_action_backend/get_status')
+        self.lifecycle = self.node.create_client(ChangeState, namespace + '/http_action_backend/change_state')
         self.assertTrue(self.arm.wait_for_server(timeout_sec=6))
         self.assertTrue(self.hand.wait_for_server(timeout_sec=6))
         self.assertTrue(self.status.wait_for_service(timeout_sec=3))
         self.assertEqual(self.arm_http.model.requests, [])
         self.assertEqual(self.hand_http.model.requests, [])
+        self.assertTrue(self.lifecycle.wait_for_service(timeout_sec=3))
+        if activate:
+            self.assertTrue(self.transition(1))
+            deadline = time.monotonic() + 4
+            while not self.state()['ready']:
+                self.assertLess(time.monotonic(), deadline)
+            self.assertTrue(self.transition(3))
+
+    def transition(self, transition_id):
+        request = ChangeState.Request()
+        request.transition.id = transition_id
+        return self.wait(self.lifecycle.call_async(request)).success
+
+    def state(self):
+        return json.loads(self.wait(self.status.call_async(Trigger.Request())).message)
 
     def stop_process(self):
         if self.process.poll() is None:
@@ -158,6 +176,54 @@ class HttpActionsTest(unittest.TestCase):
                                 capture_output=True, text=True, timeout=6)
         self.assertNotEqual(result.returncode, 0)
         self.assertIn('trajectory mode is unsupported', result.stderr)
+
+    def test_inactive_gate_and_explicit_reactivation(self):
+        self.start(activate=False)
+        self.assertFalse(self.wait(self.arm.send_goal_async(self.goal())).accepted)
+        self.assertTrue(self.transition(1))
+        deadline = time.monotonic() + 4
+        while not self.state()['ready']:
+            self.assertLess(time.monotonic(), deadline)
+        self.assertFalse(self.wait(self.arm.send_goal_async(self.goal())).accepted)
+        self.assertTrue(self.transition(3))
+        self.assertTrue(self.state()['active'])
+        self.assertTrue(self.transition(4))
+        self.assertFalse(self.wait(self.arm.send_goal_async(self.goal())).accepted)
+        self.assertEqual(self.arm_http.model.execution_count, 0)
+
+    def test_device_loss_deactivates_and_does_not_auto_resume(self):
+        self.start()
+        original = self.hand_http.model.handle
+        self.hand_http.model.handle = lambda *args: (200, {'connected': False}, False)
+        deadline = time.monotonic() + 4
+        while self.state()['active']:
+            self.assertLess(time.monotonic(), deadline)
+        self.assertFalse(self.wait(self.arm.send_goal_async(self.goal())).accepted)
+        self.hand_http.model.handle = original
+        deadline = time.monotonic() + 4
+        while not self.state()['ready']:
+            self.assertLess(time.monotonic(), deadline)
+        self.assertFalse(self.state()['active'])
+        self.assertEqual(self.arm_http.model.execution_count, 0)
+
+    def test_restart_requires_activation_and_never_replays(self):
+        self.start()
+        self.assertTrue(self.wait(self.send(self.arm, self.goal()).get_result_async()).result.success)
+        count = self.arm_http.model.execution_count
+        self.stop_process()
+        self.process = subprocess.Popen(self.process_args)
+        self.assertTrue(self.status.wait_for_service(timeout_sec=5))
+        state = self.state()
+        self.assertFalse(state['active'])
+        self.assertFalse(self.wait(self.arm.send_goal_async(self.goal())).accepted)
+        self.assertEqual(self.arm_http.model.execution_count, count)
+
+    def test_duplicate_endpoint_owner_fails_even_with_another_resource_id(self):
+        self.start()
+        result = subprocess.run(self.process_args + ['-p', 'ownership_id:=other_robot'],
+                                capture_output=True, text=True, timeout=5)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('command producer already owns http_', result.stderr)
 
 
 if __name__ == '__main__':

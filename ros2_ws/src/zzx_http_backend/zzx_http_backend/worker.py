@@ -2,6 +2,7 @@
 from dataclasses import dataclass, field
 import math
 import time
+from urllib.parse import urlsplit
 
 from zzx_interfaces.msg import ErrorStatus as E
 from zzx_http_contracts.client import LoopbackClient, ReportedFailure, UnknownOutcome
@@ -70,7 +71,8 @@ class HttpWorker:
             raise ValueError('timing parameters must be finite and positive')
         if stop_timeout <= settle:
             raise ValueError('stop timeout must exceed settling time')
-        self.url, self.request_timeout = url, request_timeout
+        self.url = f'http://127.0.0.1:{urlsplit(url).port}'
+        self.request_timeout = request_timeout
         self.settle, self.stop_timeout = settle, stop_timeout
 
     def request(self, method, path, payload, deadline, command=False):

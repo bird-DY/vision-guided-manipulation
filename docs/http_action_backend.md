@@ -1,5 +1,7 @@
 # B10：HTTP 与 ROS 2 Action 的适配边界
 
+B11 已增加生命周期和本机所有权。节点启动后默认 unconfigured，必须 configure、确认 ready、activate 才能接收动作。推荐改用 [统一启动说明](bringup_lifecycle.md)。
+
 ## 本阶段完成什么
 
 新增 `ros2_ws/src/zzx_http_backend`，将 B09 已验证的 HTTP 协议接入：
@@ -105,7 +107,14 @@ ros2 run zzx_http_backend http_action_backend --ros-args -r __ns:=/b10
 第四个终端可先查看本地状态，再发送食指测试：
 
 ```bash
+ros2 lifecycle set /b10/http_action_backend configure
 ros2 service call /b10/http_action_backend/get_status std_srvs/srv/Trigger '{}'
+```
+
+确认 ready=true 后再激活并发送目标：
+
+```bash
+ros2 lifecycle set /b10/http_action_backend activate
 ros2 action send_goal /b10/zzx/manipulation/control_hand zzx_interfaces/action/ControlHand \
   '{position_unit: 1, joint_names: [index_pip], positions: [0.0], speed_scaling: 1.0, max_effort: 0.0, stop_on_contact: false, timeout: {sec: 5}}' --feedback
 ```
@@ -125,4 +134,4 @@ colcon test-result --test-result-base build/zzx_http_backend --verbose
 
 2026-10-02 全量相关回归：HTTP 适配包 12 项、HTTP 契约包 17 项、持久化包 10 项、执行包汇总 41 项（含测试容器记录），全部通过。仅在 WSL、本地 DDS 与 HTTP 假服务测试，未验收真机或 VS Code 图形界面。
 
-B11 下一步是 bringup、生命周期和单命令所有权，进一步约束节点组合、运行状态与启动/停止顺序。之后才讨论受控真机接入。
+B11 已增加 bringup、生命周期和单命令所有权，进一步约束节点组合、运行状态与启动/停止顺序，详见 [统一启动与就绪管理](bringup_lifecycle.md)。2026-10-03 HTTP 适配包扩展至 16 项测试并全部通过；仍未开放真机接入。

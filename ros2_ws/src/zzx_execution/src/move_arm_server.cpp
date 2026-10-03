@@ -6,6 +6,11 @@
 #include <memory>
 #include <sstream>
 #include <unordered_set>
+#include <filesystem>
+#include <cstdlib>
+#include <fcntl.h>
+#include <sys/file.h>
+#include <unistd.h>
 
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_action/rclcpp_action.hpp"
@@ -26,6 +31,21 @@ class MoveArmServer : public rclcpp::Node
 public:
   MoveArmServer() : Node("move_arm_server")
   {
+    const auto owner = declare_parameter("ownership_id", std::string("zzxrobot"));
+    if (owner.empty() || owner.size() > 64 ||
+      owner.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-") != std::string::npos)
+    {
+      throw std::invalid_argument("invalid ownership_id");
+    }
+    const auto home = std::getenv("HOME");
+    if (!home) {throw std::runtime_error("HOME is required for command ownership");}
+    const auto root = std::filesystem::path(home) / ".local/state/zzxrobot/owners";
+    std::filesystem::create_directories(root);
+    owner_fd_ = ::open((root / (owner + ".lock")).c_str(), O_CREAT | O_RDWR | O_CLOEXEC, 0600);
+    if (owner_fd_ < 0 || ::flock(owner_fd_, LOCK_EX | LOCK_NB) != 0) {
+      if (owner_fd_ >= 0) {::close(owner_fd_); owner_fd_ = -1;}
+      throw std::runtime_error("another command producer owns this robot");
+    }
     const auto names = declare_parameter<std::vector<std::string>>("joint_names",
       {"joint1", "joint2", "joint3", "joint4", "joint5", "joint6"});
     const auto initial = declare_parameter<std::vector<double>>("initial_positions",
@@ -80,7 +100,13 @@ public:
     RCLCPP_INFO(get_logger(), "MoveArm fake backend ready; no hardware connection");
   }
 
+  ~MoveArmServer() override
+  {
+    if (owner_fd_ >= 0) {::close(owner_fd_);}
+  }
+
 private:
+  int owner_fd_{-1};
   sensor_msgs::msg::JointState joints()
   {
     sensor_msgs::msg::JointState result;
