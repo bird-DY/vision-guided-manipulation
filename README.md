@@ -36,6 +36,7 @@
 - [B11 统一启动、生命周期与命令所有权](docs/bringup_lifecycle.md)
 - [B12 RGB-D 清单、数据隔离与离线回放](docs/rgbd_datasets.md)
 - [B13 单实例相机入口、共享图像与 WSL 传输](docs/camera_ingress.md)
+- [B14 第一阶段：RGB-D 同步与质量核心（ROS 节点待接入）](docs/rgbd_quality_gate.md)
 - [统一 ROS 2 接口说明](ros2_ws/src/zzx_interfaces/README.md)
 
 ## 目录
