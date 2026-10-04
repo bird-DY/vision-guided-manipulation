@@ -23,6 +23,15 @@ def build(context):
     if profile not in profiles:
         raise ValueError('profile must be fake, http or sim')
     selected = profiles[profile]
+    camera_backend = LaunchConfiguration('camera_backend').perform(context)
+    camera_actions = []
+    if camera_backend not in ('none', 'synthetic', 'orbbec', 'sdk'):
+        raise ValueError('camera_backend must be none, synthetic, orbbec or sdk')
+    if camera_backend != 'none':
+        camera_path = Path(get_package_share_directory('zzx_camera')) / 'launch/camera.launch.py'
+        camera_actions = [IncludeLaunchDescription(PythonLaunchDescriptionSource(str(camera_path)),
+            launch_arguments={'backend': camera_backend,
+                              'allow_device': LaunchConfiguration('camera_allow_device')}.items())]
     if profile == 'sim':
         if resource != 'zzxrobot':
             raise ValueError('sim uses fixed upstream controller names and requires ownership_id=zzxrobot')
@@ -32,7 +41,7 @@ def build(context):
             lease.close()
             return []
         return [RegisterEventHandler(OnShutdown(on_shutdown=[OpaqueFunction(function=release)])),
-                IncludeLaunchDescription(PythonLaunchDescriptionSource(str(path)))]
+                IncludeLaunchDescription(PythonLaunchDescriptionSource(str(path)))] + camera_actions
     params = {'ownership_id': resource}
     nodes = []
     if profile == 'http':
@@ -52,7 +61,7 @@ def build(context):
     for node in nodes:
         actions.append(RegisterEventHandler(OnProcessExit(target_action=node,
                        on_exit=[EmitEvent(event=Shutdown(reason='managed backend process exited'))])))
-    return actions + nodes
+    return actions + nodes + camera_actions
 
 
 def generate_launch_description():
@@ -62,5 +71,7 @@ def generate_launch_description():
         DeclareLaunchArgument('namespace', default_value='robot'),
         DeclareLaunchArgument('arm_port', default_value='18087'),
         DeclareLaunchArgument('hand_port', default_value='18088'),
+        DeclareLaunchArgument('camera_backend', default_value='none'),
+        DeclareLaunchArgument('camera_allow_device', default_value='false'),
         OpaqueFunction(function=build),
     ])

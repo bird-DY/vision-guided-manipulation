@@ -1,0 +1,13 @@
+{
+  "orbbec_ros2": {
+    "url": "https://github.com/orbbec/OrbbecSDK_ROS2.git",
+    "reference_commit": "296156521b60bdf813cb94c46cbb55562bbdc453",
+    "launch": "gemini_330_series.launch.py",
+    "status": "reference_only_not_hardware_validated"
+  },
+  "pyorbbecsdk": {
+    "url": "https://github.com/orbbec/pyorbbecsdk.git",
+    "reference_commit": "0f089c9bf6e618e7782228ee6bcf666e3339ae78",
+    "status": "optional_not_installed_or_hardware_validated"
+  }
+}

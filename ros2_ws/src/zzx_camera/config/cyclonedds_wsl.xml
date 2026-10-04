@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CycloneDDS>
+  <Domain>
+    <General>
+      <MaxMessageSize>1200B</MaxMessageSize>
+      <FragmentSize>1024B</FragmentSize>
+    </General>
+  </Domain>
+</CycloneDDS>
